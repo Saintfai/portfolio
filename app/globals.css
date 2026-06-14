@@ -701,88 +701,97 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Spider-Man Theme styles */
+/* Spider-Man Theme styles (White Background) */
 .contact-section.spiderman-theme {
-  background-color: var(--color-spiderman-red);
-  color: var(--color-pure-white);
+  background-color: var(--color-pure-white);
+  color: var(--text-ink);
   transition: background-color 0.3s ease;
 }
 
 :root[data-theme='noir'] .contact-section.spiderman-theme {
   background-color: var(--color-pure-black);
+  color: var(--color-pure-white);
 }
 
 .contact-section.spiderman-theme .contact-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--color-pure-white);
-  text-shadow: 3px 3px 0 var(--color-pure-black);
 }
 
 .contact-section.spiderman-theme .contact-highlight {
-  color: var(--color-wolverine-yellow);
-  text-shadow: 2px 2px 0 var(--color-pure-black);
+  color: var(--color-spiderman-red);
 }
 
 .contact-section.spiderman-theme .contact-description {
   margin-top: 1rem;
   font-size: 1.2rem;
-  color: var(--color-pure-white);
-  text-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
-/* Ensure social tooltip is black and white even on red background */
-.contact-section.spiderman-theme .social-tooltip {
-  color: var(--color-pure-black) !important;
-}
-
-/* Ensure bubbles inside spiderman theme contrast well */
-.contact-section.spiderman-theme .decor-bubble {
-  background-color: var(--color-pure-white);
-  color: var(--color-pure-black);
-  opacity: 0.95;
-}
-
-.contact-section.spiderman-theme .decor-burst {
-  background-color: var(--color-wolverine-yellow);
-  color: var(--color-pure-black);
-}
-
-.contact-section.spiderman-theme .decor-caption {
-  background-color: var(--color-wolverine-yellow);
-  color: var(--color-pure-black);
-}
-
-/* SVG Spiderwebs */
-.spiderweb-svg {
+/* SVG Spiderwebs Backdrop */
+.spiderweb-backdrop-svg {
   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.15;
+  opacity: 0.08; /* Very subtle, non-intrusive backdrop */
   transition: opacity 0.3s ease;
 }
 
 /* Web colors based on theme */
-.spiderweb-svg path {
+.spiderweb-backdrop-svg path {
   stroke: var(--color-pure-black);
   stroke-width: 1.5;
   fill: none;
 }
 
-:root[data-theme='noir'] .spiderweb-svg path {
+:root[data-theme='noir'] .spiderweb-backdrop-svg path {
   stroke: var(--color-pure-white);
-  opacity: 0.25;
+  opacity: 0.15;
 }
 
-.web-top-right {
+/* Hanging Spider Styles */
+@keyframes spider-bob {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.hanging-spider {
+  position: absolute;
   top: 0;
-  right: 0;
-  transform: translate(15%, -15%);
+  left: 6%;
+  z-index: 1;
+  pointer-events: none;
+  animation: spider-bob 5s ease-in-out infinite;
+  transform-origin: top center;
 }
 
-.web-bottom-left {
-  bottom: 0;
-  left: 0;
-  transform: translate(-15%, 15%);
+.hanging-spider-thread {
+  stroke: var(--color-pure-black);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  opacity: 0.35;
+}
+
+:root[data-theme='noir'] .hanging-spider-thread {
+  stroke: var(--color-pure-white);
+  opacity: 0.5;
+}
+
+.hanging-spider-body {
+  color: var(--color-pure-black);
+}
+
+:root[data-theme='noir'] .hanging-spider-body {
+  color: var(--color-pure-white);
+}
+
+/* Hide hanging spider on very small screens to avoid clutter */
+@media (max-width: 576px) {
+  .hanging-spider {
+    display: none;
+  }
 }
 
 .contact-form-card {

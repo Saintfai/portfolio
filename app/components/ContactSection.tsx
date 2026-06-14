@@ -46,11 +46,13 @@ export default function ContactSection() {
       as="section" 
       id="contact" 
       animationClass="scroll-fade-bg" 
-      className="contact-section speed-lines ink-texture spiderman-theme"
+      className="contact-section ink-texture spiderman-theme"
     >
-      {/* SVG Spiderwebs */}
-      <CornerWeb position="top-right" />
-      <CornerWeb position="bottom-left" />
+      {/* Full-section Spiderweb Backdrop */}
+      <FullWeb />
+      
+      {/* Hanging Spider Easter Egg */}
+      <HangingSpider />
 
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
@@ -166,45 +168,36 @@ export default function ContactSection() {
   );
 }
 
-// Dynamically generated SVG Spiderweb for layout framing
-function CornerWeb({ position }: { position: "top-right" | "bottom-left" }) {
-  const width = 300;
-  const height = 300;
-  
-  // Center coordinates
-  const cx = position === "top-right" ? width : 0;
-  const cy = position === "top-right" ? 0 : height;
-  
-  const numSpokes = 7;
-  const numRings = 6;
-  const maxR = 300;
-  const bowFactor = 0.92; // bows inward slightly
-  
-  // Angle ranges for 90 degree corner webs
-  // top-right corner: Math.PI/2 (down) to Math.PI (left)
-  // bottom-left corner: 1.5 * Math.PI (up) to 2 * Math.PI (right)
-  const startAngle = position === "top-right" ? Math.PI / 2 : 1.5 * Math.PI;
-  const angleRange = Math.PI / 2;
+// Full background SVG Spiderweb
+function FullWeb() {
+  const width = 800;
+  const height = 600;
+  const cx = 400;
+  const cy = 300;
+  const numSpokes = 16;
+  const numRings = 9;
+  const maxR = 600;
+  const bowFactor = 0.95; // bows inward slightly
   
   const spokes: string[] = [];
   const rings: string[] = [];
   
   // Generate Spokes (radial lines)
-  for (let i = 0; i <= numSpokes; i++) {
-    const angle = startAngle + (i / numSpokes) * angleRange;
+  for (let i = 0; i < numSpokes; i++) {
+    const angle = (i * Math.PI * 2) / numSpokes;
     const x2 = cx + Math.cos(angle) * maxR;
     const y2 = cy + Math.sin(angle) * maxR;
     spokes.push(`M ${cx} ${cy} L ${x2} ${y2}`);
   }
   
-  // Generate Rings (curved spiderweb concentric segments)
+  // Generate Rings (curved spiderweb concentric circles)
   for (let j = 1; j <= numRings; j++) {
     const r = (j / numRings) * maxR;
     let ringPath = "";
     
-    for (let i = 0; i < numSpokes; i++) {
-      const a1 = startAngle + (i / numSpokes) * angleRange;
-      const a2 = startAngle + ((i + 1) / numSpokes) * angleRange;
+    for (let i = 0; i <= numSpokes; i++) {
+      const a1 = ((i % numSpokes) * Math.PI * 2) / numSpokes;
+      const a2 = (((i + 1) % numSpokes) * Math.PI * 2) / numSpokes;
       
       const x1 = cx + Math.cos(a1) * r;
       const y1 = cy + Math.sin(a1) * r;
@@ -227,9 +220,8 @@ function CornerWeb({ position }: { position: "top-right" | "bottom-left" }) {
   return (
     <svg 
       viewBox={`0 0 ${width} ${height}`} 
-      className={`spiderweb-svg ${position === "top-right" ? "web-top-right" : "web-bottom-left"}`}
-      width={width}
-      height={height}
+      className="spiderweb-backdrop-svg"
+      preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
       {/* Spokes */}
@@ -241,5 +233,42 @@ function CornerWeb({ position }: { position: "top-right" | "bottom-left" }) {
         <path key={`ring-${i}`} d={d} />
       ))}
     </svg>
+  );
+}
+
+// Bobbing Hanging Spider Component
+function HangingSpider() {
+  return (
+    <div className="hanging-spider" style={{ width: 40, height: 160 }}>
+      <svg width="40" height="160" viewBox="0 0 40 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        {/* Silk thread line */}
+        <line x1="20" y1="0" x2="20" y2="100" className="hanging-spider-thread" />
+        
+        {/* Spider body (centered around x=20, y=110) */}
+        <g className="hanging-spider-body">
+          {/* Left Legs */}
+          <path d="M 17 108 Q 5 98 2 110" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 16 110 Q 3 107 1 118" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 16 112 Q 3 116 2 127" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 17 114 Q 6 124 7 134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          
+          {/* Right Legs */}
+          <path d="M 23 108 Q 35 98 38 110" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 24 110 Q 37 107 39 118" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 24 112 Q 37 116 38 127" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 23 114 Q 34 124 33 134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          
+          {/* Cephalothorax (head) */}
+          <ellipse cx="20" cy="107" rx="5" ry="5" fill="currentColor" />
+          
+          {/* Abdomen (body) */}
+          <ellipse cx="20" cy="117" rx="7" ry="9" fill="currentColor" />
+          
+          {/* Glowing red Spidey eyes */}
+          <circle cx="18" cy="104" r="0.8" fill="var(--color-spiderman-red)" />
+          <circle cx="22" cy="104" r="0.8" fill="var(--color-spiderman-red)" />
+        </g>
+      </svg>
+    </div>
   );
 }
