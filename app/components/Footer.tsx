@@ -15,9 +15,6 @@ export default function Footer() {
         <p className="footer-text">
           © {currentYear} <span className="footer-name">{profile.alias}</span>. ALL RIGHTS RESERVED.
         </p>
-        <p className="footer-subtext">
-          MADE WITH 💥 AND 🕸️
-        </p>
       </div>
     </footer>
   );
