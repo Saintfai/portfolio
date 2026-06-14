@@ -697,19 +697,92 @@ h1, h2, h3, h4, h5, h6 {
 .contact-section {
   padding: 6rem 2rem;
   background-color: var(--color-pure-white);
+  position: relative;
+  overflow: hidden;
 }
 
-.contact-title {
+/* Spider-Man Theme styles */
+.contact-section.spiderman-theme {
+  background-color: var(--color-spiderman-red);
+  color: var(--color-pure-white);
+  transition: background-color 0.3s ease;
+}
+
+:root[data-theme='noir'] .contact-section.spiderman-theme {
+  background-color: var(--color-pure-black);
+}
+
+.contact-section.spiderman-theme .contact-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-pure-white);
+  text-shadow: 3px 3px 0 var(--color-pure-black);
 }
 
-.contact-highlight {
-  color: var(--color-spiderman-red);
+.contact-section.spiderman-theme .contact-highlight {
+  color: var(--color-wolverine-yellow);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
-.contact-description {
+.contact-section.spiderman-theme .contact-description {
   margin-top: 1rem;
   font-size: 1.2rem;
+  color: var(--color-pure-white);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+}
+
+/* Ensure social tooltip is black and white even on red background */
+.contact-section.spiderman-theme .social-tooltip {
+  color: var(--color-pure-black) !important;
+}
+
+/* Ensure bubbles inside spiderman theme contrast well */
+.contact-section.spiderman-theme .decor-bubble {
+  background-color: var(--color-pure-white);
+  color: var(--color-pure-black);
+  opacity: 0.95;
+}
+
+.contact-section.spiderman-theme .decor-burst {
+  background-color: var(--color-wolverine-yellow);
+  color: var(--color-pure-black);
+}
+
+.contact-section.spiderman-theme .decor-caption {
+  background-color: var(--color-wolverine-yellow);
+  color: var(--color-pure-black);
+}
+
+/* SVG Spiderwebs */
+.spiderweb-svg {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+/* Web colors based on theme */
+.spiderweb-svg path {
+  stroke: var(--color-pure-black);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+:root[data-theme='noir'] .spiderweb-svg path {
+  stroke: var(--color-pure-white);
+  opacity: 0.25;
+}
+
+.web-top-right {
+  top: 0;
+  right: 0;
+  transform: translate(15%, -15%);
+}
+
+.web-bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-15%, 15%);
 }
 
 .contact-form-card {
