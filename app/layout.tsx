@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Graphic Multiverse - Portfolio",
+  title: "Fairuz - Portfolio",
   description: "Personal Portfolio in Heavy Ink Brutalism Style",
 };
 
