@@ -1,0 +1,73 @@
+export const portfolioData = {
+  profile: {
+    heroName: "The Heavy Ink",
+    role: "Developer",
+    description: "Building aggressive, high-contrast web experiences that break the grid and command attention.",
+    alias: "Fairuz Sheva",
+    University: "Politeknik Negeri Bandung",
+    skills: ["Flutter", "React", "Next.js", "Figma"],
+    bio: [
+      "I am a Computer Science student and Software Developer with a versatile interest in building and analyzing digital systems. My expertise spans Mobile Development (Flutter) and Web Development, where I focus on creating seamless, high-performance applications from the front to the backend.",
+      "Beyond writing code, I have a strong passion for System Analysis. I enjoy the process of auditing requirements, designing domain models, and applying GRASP patterns to ensure every project is built on a solid, scalable architecture.",
+      "With great power comes great responsibility. The responsibility to ensure perfect lighthouse scores, seamless animations, and accessibility for all citizens of the web."
+    ]
+  },
+  projects: [
+    {
+      id: "1",
+      title: "GastroLog",
+      image: "",
+      description: "An automated web scraper and notification bot built in Python to monitor and report academic attendance changes.",
+      fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
+      year: "2026",
+      tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
+      githubUrl: "https://github.com/Saintfai/Project-GastroLog"
+    },
+    {
+      id: "2",
+      title: "Auto Notification Attendance",
+      image: "",
+      description: "An automated web scraper and notification bot built in Python to monitor and report academic attendance changes.",
+      fullDescription: "An automation utility designed to continuously poll or manually check academic portal session histories. It logs into academic portals via HTTP requests, screens HTML structures using BeautifulSoup to calculate real-time percentage differentials, maintains localized cache snapshots to detect structural data deviations, and streams updates immediately over instant messaging channels.",
+      year: "2026",
+      tags: ["Python", "Requests", "BeautifulSoup", "Github Actions"],
+      githubUrl: "https://github.com/Saintfai/Project-Auto-Notification-Attendance"
+    },
+    {
+      id: "3",
+      title: "Kegiatin",
+      image: "",
+      description: "Offline-first event management app for PD Pemuda Persis Kab. Bandung.",
+      fullDescription: "An offline-first event management application designed to digitalize event administration, resolve attendance tracking issues in areas with poor internet connection (blank spots), provide a systematic central repository for event materials, and integrate structured validation for official organization memberships.",
+      year: "2026",
+      tags: ["Flutter", "Riverpod", "PostgreSQL", "GoRouter", "NestJS", "Hive CE"],
+      githubUrl: "https://github.com/ikhsan3adi/kegiatin"
+    },
+    {
+      id: "4",
+      title: "TTDJ",
+      image: "",
+      description: "Web application framework based on Laravel featuring an expressive, elegant syntax.",
+      fullDescription: "A digital signature application built on top of the Laravel framework that streamlines web development overheads by utilizing standard routing mechanisms, robust dependency injection containers, intuitive database ORM, background queues, and customizable schema migrations.",
+      year: "2026",
+      tags: ["PHP", "Laravel", "PostgreSQL"],
+      githubUrl: "https://github.com/Saintfai/Project-Aplikasi-Penandatanganan-Digital"
+    },
+    {
+      id: "5",
+      title: "Space Invader",
+      image: "",
+      description: "A 2D arcade game where players control a spaceship to destroy incoming waves of alien enemies while managing resources and power-ups.",
+      fullDescription: "Space Invaders is a desktop-based 2D arcade game that features progressive wave scaling mechanics, multiple enemy difficulty profiles, ammunition constraints, structural health tracking, randomized power-up supply spawns, responsive collision bounding blocks, an interactive soundscape engine, and a file-persistent dynamic leaderboard system.",
+      year: "2025",
+      tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
+      githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
+    }
+  ],
+  contacts: {
+    email: "shevafairuz10@gmail.com",
+    github: "@Saintfai",
+    Linkedin: "https://www.linkedin.com/in/fairuz-sheva-muhammad-61446b386/",
+    instagram: "@saintfai_",
+  }
+};
