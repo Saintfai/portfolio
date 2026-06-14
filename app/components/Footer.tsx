@@ -8,6 +8,9 @@ export default function Footer() {
 
   return (
     <footer className="footer-container">
+      {/* Slanted top border */}
+      <div className="footer-border-top" />
+      
       <div className="footer-content">
         <p className="footer-text">
           © {currentYear} <span className="footer-name">{profile.alias}</span>. ALL RIGHTS RESERVED.
