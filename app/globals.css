@@ -1906,8 +1906,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 60px;
   background-color: var(--color-pure-white);
-  /* clip a bold 16px slanted line along the top slanted edge to match the heavy comic borders */
-  clip-path: polygon(0 30px, 100% 0, 100% 16px, 0 46px);
+  /* clip an 8px white slanted stripe, offset by 8px from the top to create a bold 8px black comic border above it */
+  clip-path: polygon(0 38px, 100% 8px, 100% 16px, 0 46px);
   z-index: 12;
   pointer-events: none;
 }
