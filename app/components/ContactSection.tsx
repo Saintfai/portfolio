@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
 
@@ -236,27 +236,139 @@ function FullWeb() {
   );
 }
 
-// Bobbing Hanging Spider Component
+// Interactive Hanging Spider Component with drag-and-spring physics
 function HangingSpider() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const threadRef = useRef<SVGLineElement>(null);
+  const bodyRef = useRef<SVGGElement>(null);
+  
+  // Physics states stored in refs to avoid re-renders at 60fps
+  const pos = useRef({ x: 0, y: 110 });
+  const vel = useRef({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+  const dragOffset = useRef({ x: 0, y: 0 });
+  const requestRef = useRef<number | null>(null);
+  
+  const restPos = { x: 0, y: 110 };
+  const springK = 0.08;
+  const damping = 0.9;
+  
+  useEffect(() => {
+    const updatePhysics = () => {
+      if (isDragging.current) {
+        // Velocity during drag is calculated by the mouse movement
+      } else {
+        // Apply sine wave bobbing relative to rest position when idle
+        const time = Date.now() * 0.0025;
+        const idleBobY = Math.sin(time) * 4; // subtle 4px bobbing
+        const currentRestY = restPos.y + idleBobY;
+
+        // Apply spring force towards rest position
+        const fx = (restPos.x - pos.current.x) * springK;
+        const fy = (currentRestY - pos.current.y) * springK;
+        
+        vel.current.x = (vel.current.x + fx) * damping;
+        vel.current.y = (vel.current.y + fy) * damping;
+        
+        pos.current.x += vel.current.x;
+        pos.current.y += vel.current.y;
+      }
+      
+      // Update DOM directly for maximum performance
+      if (threadRef.current) {
+        threadRef.current.setAttribute("x2", (20 + pos.current.x).toString());
+        threadRef.current.setAttribute("y2", pos.current.y.toString());
+      }
+      if (bodyRef.current) {
+        // Skew/tilt body slightly based on horizontal velocity for organic sway
+        const tilt = Math.max(-25, Math.min(25, vel.current.x * 2.5));
+        bodyRef.current.setAttribute("transform", `translate(${pos.current.x}, ${pos.current.y - 110}) rotate(${tilt}, 20, 110)`);
+      }
+      
+      requestRef.current = requestAnimationFrame(updatePhysics);
+    };
+    
+    requestRef.current = requestAnimationFrame(updatePhysics);
+    
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, []);
+  
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    isDragging.current = true;
+    
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      dragOffset.current = {
+        x: mouseX - (20 + pos.current.x),
+        y: mouseY - pos.current.y
+      };
+    }
+    
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      if (!isDragging.current || !containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const mouseX = moveEvent.clientX - rect.left;
+      const mouseY = moveEvent.clientY - rect.top;
+      
+      const targetX = mouseX - dragOffset.current.x - 20;
+      const targetY = mouseY - dragOffset.current.y;
+      
+      // Limit horizontal and vertical stretch to prevent dragging outside bounding area
+      const limitedX = Math.max(-60, Math.min(60, targetX));
+      const limitedY = Math.max(30, Math.min(240, targetY));
+      
+      vel.current.x = limitedX - pos.current.x;
+      vel.current.y = limitedY - pos.current.y;
+      
+      pos.current.x = limitedX;
+      pos.current.y = limitedY;
+    };
+    
+    const handleMouseUp = () => {
+      isDragging.current = false;
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+    
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  };
+  
   return (
-    <div className="hanging-spider" style={{ width: 40, height: 160 }}>
-      <svg width="40" height="160" viewBox="0 0 40 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div 
+      ref={containerRef} 
+      className="hanging-spider" 
+      style={{ width: 40, height: 260, cursor: "grab" }}
+      onMouseDown={handleMouseDown}
+    >
+      <svg width="40" height="260" viewBox="0 0 40 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ overflow: "visible" }}>
         {/* Silk thread line */}
-        <line x1="20" y1="0" x2="20" y2="100" className="hanging-spider-thread" />
+        <line ref={threadRef} x1="20" y1="0" x2="20" y2="110" className="hanging-spider-thread" />
         
         {/* Spider body (centered around x=20, y=110) */}
-        <g className="hanging-spider-body">
+        <g ref={bodyRef} className="hanging-spider-body" style={{ pointerEvents: "all" }}>
+          {/* Draggable hit area (invisible circle for easy grabbing) */}
+          <circle cx="20" cy="112" r="24" fill="transparent" style={{ cursor: "grab" }} />
+          
           {/* Left Legs */}
-          <path d="M 17 108 Q 5 98 2 110" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 16 110 Q 3 107 1 118" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 16 112 Q 3 116 2 127" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 17 114 Q 6 124 7 134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 17 108 Q 5 98 2 110" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 16 110 Q 3 107 1 118" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 16 112 Q 3 116 2 127" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 17 114 Q 6 124 7 134" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           
           {/* Right Legs */}
-          <path d="M 23 108 Q 35 98 38 110" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 24 110 Q 37 107 39 118" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 24 112 Q 37 116 38 127" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 23 114 Q 34 124 33 134" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 23 108 Q 35 98 38 110" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 24 110 Q 37 107 39 118" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 24 112 Q 37 116 38 127" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path d="M 23 114 Q 34 124 33 134" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
           
           {/* Cephalothorax (head) */}
           <ellipse cx="20" cy="107" rx="5" ry="5" fill="currentColor" />

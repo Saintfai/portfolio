@@ -753,20 +753,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hanging Spider Styles */
-@keyframes spider-bob {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
 .hanging-spider {
   position: absolute;
   top: 0;
   left: 6%;
-  z-index: 1;
-  pointer-events: none;
-  animation: spider-bob 5s ease-in-out infinite;
+  z-index: 10;
+  pointer-events: auto;
   transform-origin: top center;
+  user-select: none;
+}
+
+.hanging-spider:active {
+  cursor: grabbing;
 }
 
 .hanging-spider-thread {
