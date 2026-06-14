@@ -195,9 +195,9 @@ function FullWeb() {
     const r = (j / numRings) * maxR;
     let ringPath = "";
     
-    for (let i = 0; i <= numSpokes; i++) {
-      const a1 = ((i % numSpokes) * Math.PI * 2) / numSpokes;
-      const a2 = (((i + 1) % numSpokes) * Math.PI * 2) / numSpokes;
+    for (let i = 0; i < numSpokes; i++) {
+      const a1 = (i * Math.PI * 2) / numSpokes;
+      const a2 = ((i + 1) * Math.PI * 2) / numSpokes;
       
       const x1 = cx + Math.cos(a1) * r;
       const y1 = cy + Math.sin(a1) * r;
