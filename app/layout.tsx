@@ -3,7 +3,6 @@ import { Anybody, Archivo_Narrow, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/ThemeProvider";
 import ScrollProgressBar from "./components/ScrollProgressBar";
-import SpeedLinesController from "./components/SpeedLinesController";
 
 const anybody = Anybody({
   variable: "--font-anybody",
@@ -42,7 +41,6 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false} themes={['light', 'noir']}>
           <ScrollProgressBar />
-          <SpeedLinesController />
           {children}
         </ThemeProvider>
       </body>
