@@ -734,8 +734,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.08; /* Very subtle, non-intrusive backdrop */
+  opacity: 0.12; /* Slightly increased because of the fading effect */
   transition: opacity 0.3s ease;
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
 }
 
 /* Web colors based on theme */

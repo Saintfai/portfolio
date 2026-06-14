@@ -172,11 +172,11 @@ export default function ContactSection() {
 function FullWeb() {
   const width = 800;
   const height = 600;
-  const cx = 400;
-  const cy = 300;
+  const cx = 240; // Offset to the left to align behind the title
+  const cy = 280; // Offset vertically
   const numSpokes = 16;
   const numRings = 9;
-  const maxR = 600;
+  const maxR = 750; // Increased to ensure the offset web covers all edges
   const bowFactor = 0.95; // bows inward slightly
   
   const spokes: string[] = [];
