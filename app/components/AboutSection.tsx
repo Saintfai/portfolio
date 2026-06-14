@@ -1,10 +1,11 @@
 import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
+import ScrollReveal from "./ScrollReveal";
 
 export default function AboutSection() {
   const { profile } = portfolioData;
   return (
-    <section id="about" className="section-padding fade-in-up delay-100">
+    <section id="about" className="section-padding">
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
         <div className="decor-caption" style={{ top: "8%", left: "3%" }}>
@@ -16,7 +17,7 @@ export default function AboutSection() {
       </div>
       <div className="grid-container">
         <div className="col-12">
-          <div className="hard-shadow">
+          <ScrollReveal animationClass="scroll-reveal-simple scroll-shadow-reveal hard-shadow">
             <ComicCard className="newspaper-card">
               {/* Masthead */}
             <header className="newspaper-masthead">
@@ -72,7 +73,7 @@ export default function AboutSection() {
               </div>
             </div>
             </ComicCard>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

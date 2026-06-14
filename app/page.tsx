@@ -3,6 +3,7 @@ import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
+import ScrollReveal from "./components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -10,11 +11,11 @@ export default function Home() {
       <div className="page-wrapper">
         <Navbar />
         <HeroSection />
-        <div className="panel-gutter" />
+        <ScrollReveal className="panel-gutter" animationClass="scroll-reveal-simple" threshold={0.5} />
         <AboutSection />
-        <div className="panel-gutter" />
+        <ScrollReveal className="panel-gutter" animationClass="scroll-reveal-simple" threshold={0.5} />
         <ProjectsSection />
-        <div className="panel-gutter" />
+        <ScrollReveal className="panel-gutter" animationClass="scroll-reveal-simple" threshold={0.5} />
         <ContactSection />
       </div>
     </main>

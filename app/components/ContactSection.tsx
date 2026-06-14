@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { portfolioData } from "../data/portfolio";
+import ScrollReveal from "./ScrollReveal";
 
 export default function ContactSection() {
   const { contacts } = portfolioData;
@@ -41,7 +42,12 @@ export default function ContactSection() {
     }
   };
   return (
-    <section id="contact" className="contact-section fade-in-up delay-300 speed-lines ink-texture">
+    <ScrollReveal 
+      as="section" 
+      id="contact" 
+      animationClass="scroll-fade-bg" 
+      className="contact-section speed-lines ink-texture"
+    >
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
         <div className="decor-burst-wrap float-slow" style={{ top: "18%", right: "2%" }}>
@@ -55,7 +61,7 @@ export default function ContactSection() {
         </div>
       </div>
       <div className="grid-container">
-        <div className="col-6">
+        <ScrollReveal className="col-6" animationClass="scroll-reveal-simple">
           <h2 className="rotate-text contact-title">
             Send a<br/><span className="contact-highlight">Signal</span>
           </h2>
@@ -113,9 +119,12 @@ export default function ContactSection() {
               </div>
             )}
           </div>
-        </div>
+        </ScrollReveal>
         <div className="col-6">
-          <div className="hard-shadow hard-shadow-tertiary">
+          <ScrollReveal
+            animationClass="scroll-reveal-simple scroll-shadow-reveal"
+            className="hard-shadow hard-shadow-tertiary"
+          >
             <form onSubmit={handleSubmit} className="comic-card contact-form-card">
               <div className="input-group">
                 <label className="comic-label" htmlFor="name">Your Name</label>
@@ -146,9 +155,9 @@ export default function ContactSection() {
                 </div>
               )}
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

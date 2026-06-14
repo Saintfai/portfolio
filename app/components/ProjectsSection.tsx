@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
+import ScrollReveal from "./ScrollReveal";
 
 export default function ProjectsSection() {
   const { projects } = portfolioData;
@@ -14,7 +15,12 @@ export default function ProjectsSection() {
   const tagClasses = ["info", "new", "urgent", "info", "new"];
 
   return (
-    <section id="projects" className="projects-section fade-in-up delay-200 speed-lines speed-lines-blue">
+    <ScrollReveal 
+      as="section" 
+      id="projects" 
+      animationClass="scroll-fade-bg" 
+      className="projects-section speed-lines speed-lines-blue"
+    >
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
         <div className="decor-caption" style={{ top: "6%", left: "2%" }}>
@@ -46,8 +52,14 @@ export default function ProjectsSection() {
           const primaryTagClass = tagClasses[index % tagClasses.length];
 
           return (
-            <div className="col-4" key={project.id} onClick={() => setSelectedProject(project)}>
-              <div className={`hard-shadow h-full ${shadowClass}`} style={{ cursor: "pointer" }}>
+            <div className="col-4" key={project.id}>
+              <ScrollReveal
+                animationClass="scroll-reveal-simple scroll-shadow-reveal"
+                className={`hard-shadow h-full ${shadowClass}`}
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedProject(project)}
+                delay={index * 100}
+              >
                 <ComicCard>
                   <div className="kicker">Issue #{index + 1}</div>
                   <div className={`comic-card-header ${themeColor}`}>
@@ -74,7 +86,7 @@ export default function ProjectsSection() {
                     </div>
                   </div>
                 </ComicCard>
-              </div>
+              </ScrollReveal>
             </div>
           );
         })}
@@ -140,6 +152,6 @@ export default function ProjectsSection() {
           </div>
         </div>
       )}
-    </section>
+    </ScrollReveal>
   );
 }
