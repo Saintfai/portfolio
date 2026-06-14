@@ -134,6 +134,9 @@ h1, h2, h3, h4, h5, h6 {
   );
   pointer-events: none;
   z-index: 0;
+  transform: rotate(var(--speed-lines-rotate, 0deg)) scale(var(--speed-lines-scale, 1));
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .speed-lines > * {
