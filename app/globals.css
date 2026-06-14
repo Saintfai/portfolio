@@ -1904,10 +1904,10 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 34px;
+  height: 38px;
   background-color: var(--color-pure-white);
-  /* clip a 4px slanted line along the top slanted edge */
-  clip-path: polygon(0 30px, 100% 0, 100% 4px, 0 34px);
+  /* clip an 8px slanted line along the top slanted edge for a bold comic outline */
+  clip-path: polygon(0 30px, 100% 0, 100% 8px, 0 38px);
   z-index: 12;
   pointer-events: none;
 }
