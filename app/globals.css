@@ -71,8 +71,9 @@
   display: none !important;
 }
 
-/* Venetian blinds effect for Hero Section */
-:root[data-theme='noir'] .hero-section::after {
+/* Venetian blinds effect for Hero & Projects Section */
+:root[data-theme='noir'] .hero-section::after,
+:root[data-theme='noir'] .projects-section::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -138,6 +139,13 @@
 :root[data-theme='noir'] .scroll-progress-bar {
   background-color: var(--noir-accent);
   box-shadow: 0 0 10px var(--noir-accent);
+}
+
+/* Fix Text Color for elements on Light Backgrounds in Noir */
+:root[data-theme='noir'] .comic-card-content,
+:root[data-theme='noir'] .kicker,
+:root[data-theme='noir'] .chip:not(.info):not(.urgent) {
+  color: var(--color-pure-black);
 }
 
 /* Minor UI Fixes */
