@@ -21,17 +21,137 @@
 }
 
 :root[data-theme='noir'] {
-  --color-spiderman-red: #1a1a1a; /* Very dark gray, almost black */
-  --color-captain-blue: #000000; /* Pure black */
-  --color-wolverine-yellow: #ffffff; /* Pure white */
-  --color-pure-black: #000000;
-  --color-pure-white: #ffffff;
-  --bg-gutter: #b3b3b3; /* Mid-gray gutter for stark contrast with cards */
-  --text-ink: #000000;
+  --color-spiderman-red: #8B1A1A;     /* Dark crimson — visible, dramatic */
+  --color-captain-blue: #1a1a2e;      /* Deep midnight navy */
+  --color-wolverine-yellow: #C9A84C;  /* Warm antique gold — noir accent */
+  --color-pure-black: #0a0a0a;        /* Near-black with slight warmth */
+  --color-pure-white: #f0ece4;        /* Warm off-white / aged paper */
+  --bg-gutter: #1a1a1a;              /* Dark background instead of gray */
+  --text-ink: #f0ece4;               /* Light text on dark bg */
+  
+  /* New noir-specific tokens */
+  --noir-accent: #C9A84C;
+  --noir-shadow: rgba(201, 168, 76, 0.08);
+  --noir-surface: #141414;
+  --noir-surface-elevated: #1e1e1e;
 }
 
 :root[data-theme='noir'] img {
-  filter: grayscale(100%) contrast(120%) brightness(95%);
+  filter: grayscale(100%) contrast(120%) brightness(90%) sepia(20%);
+}
+
+/* ============================================
+   NOIR MODE SPECIFIC OVERRIDES & EFFECTS
+   ============================================ */
+
+/* Film Grain Overlay */
+:root[data-theme='noir'] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+/* Vignette Effect */
+:root[data-theme='noir'] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+/* Hide comic decorations in noir */
+:root[data-theme='noir'] .bg-decorations {
+  display: none !important;
+}
+
+/* Venetian blinds effect for Hero Section */
+:root[data-theme='noir'] .hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 12px,
+    rgba(0, 0, 0, 0.35) 12px,
+    rgba(0, 0, 0, 0.35) 16px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fix Hero visibility and contrast */
+:root[data-theme='noir'] .hero-title {
+  text-shadow: 4px 4px 0 var(--color-pure-black), 0 0 15px rgba(201, 168, 76, 0.3);
+}
+
+:root[data-theme='noir'] .hero-subtitle {
+  background-color: var(--noir-surface-elevated);
+  border-color: var(--noir-accent);
+  color: var(--color-pure-white);
+  box-shadow: 4px 4px 0 var(--color-pure-black);
+}
+
+:root[data-theme='noir'] .hero-illustration-box {
+  background-color: var(--noir-surface);
+}
+
+/* Fix Section Titles */
+:root[data-theme='noir'] .section-title {
+  color: var(--noir-accent);
+  text-shadow: 2px 2px 0 var(--color-pure-black);
+}
+
+/* Fix Contact Highlight */
+:root[data-theme='noir'] .contact-highlight {
+  color: var(--noir-accent) !important;
+}
+
+/* Form Styling in Noir */
+:root[data-theme='noir'] .contact-form-card {
+  background-color: var(--noir-surface-elevated);
+}
+
+:root[data-theme='noir'] .comic-input {
+  background-color: var(--noir-surface);
+  color: var(--color-pure-white);
+}
+
+:root[data-theme='noir'] .comic-label {
+  background-color: var(--noir-surface-elevated);
+  color: var(--noir-accent);
+}
+
+/* Fix Scroll Progress Bar */
+:root[data-theme='noir'] .scroll-progress-container {
+  background-color: var(--noir-surface);
+  border-bottom: 2px solid var(--color-pure-black);
+}
+
+:root[data-theme='noir'] .scroll-progress-bar {
+  background-color: var(--noir-accent);
+  box-shadow: 0 0 10px var(--noir-accent);
+}
+
+/* Minor UI Fixes */
+:root[data-theme='noir'] .panel-gutter {
+  background-color: var(--noir-surface-elevated);
+}
+
+:root[data-theme='noir'] .panel-gutter::after {
+  background-color: var(--noir-surface-elevated);
+  color: var(--noir-accent);
+}
+
+:root[data-theme='noir'] .navbar {
+  background-color: var(--noir-surface-elevated);
 }
 
 img {
@@ -1936,7 +2056,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root[data-theme='noir'] .footer-name {
-  color: var(--color-pure-white);
+  color: var(--noir-accent);
 }
 
 .footer-subtext {
