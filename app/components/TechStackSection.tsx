@@ -3,110 +3,108 @@
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
 
-// Inline SVGs for all tech stacks to ensure they load instantly and reliably
+// Pure monochrome SVGs (using currentColor so they adapt to theme)
 const techIcons: { [key: string]: React.ReactNode } = {
   React: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <circle cx="12" cy="12" r="2" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)" stroke="currentColor" strokeWidth="2" fill="none" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)" stroke="currentColor" strokeWidth="2" fill="none" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)" stroke="currentColor" strokeWidth="2" fill="none" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="2" fill="currentColor" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" transform="rotate(30 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" transform="rotate(90 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="3.8" transform="rotate(150 12 12)" />
     </svg>
   ),
   "Next.js": (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M16 16L12 8L8 16" />
-      <path d="M12 11h4" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14.5l-3.2-4.5v4.5H9V8h1.8l3.2 4.5V8h1.8v8.5H13z" />
     </svg>
   ),
   Flutter: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+    <svg viewBox="0 0 24 24" fill="currentColor">
       <path d="M14.3 2.3L5 11.6l2.8 2.8 9.3-9.3z" />
       <path d="M14.3 9.3L9.6 14l2.8 2.8 4.7-4.7z" />
       <path d="M14.3 16.3l-1.9 1.9 2.8 2.8 1.9-1.9z" />
     </svg>
   ),
   TypeScript: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <rect x="2" y="2" width="20" height="20" rx="3" />
-      <path d="M6 8h6v2H9v6H7v-6H6V8zm7 0h5v2h-4v1h3v2h-3v1h4v2h-5V8z" fill="var(--color-pure-white)" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM10.7 17.5c0 .6-.2 1.1-.6 1.4-.4.3-1 .5-1.7.5-.7 0-1.2-.2-1.7-.5-.4-.3-.7-.8-.8-1.4h1.7c.1.3.2.5.4.6.2.1.4.2.7.2.3 0 .5-.1.6-.2.1-.1.2-.3.2-.6v-6.3h1.7v6.3zm7.3-4.3c0 .8-.3 1.4-.8 1.8-.5.4-1.2.6-2 .6-.6 0-1.1-.1-1.6-.4-.5-.3-.8-.7-1-1.3h1.7c.1.3.3.5.5.6.2.1.5.2.8.2.3 0 .5-.1.7-.2.2-.1.3-.3.3-.6 0-.2-.1-.4-.2-.5-.1-.1-.4-.2-.8-.4-.6-.2-1.1-.4-1.4-.7-.3-.3-.5-.7-.5-1.3 0-.7.3-1.3.8-1.7.5-.4 1.1-.6 1.9-.6.6 0 1.1.1 1.6.4.5.3.8.7.9 1.3h-1.7c-.1-.3-.2-.4-.4-.5-.2-.1-.4-.2-.7-.2-.3 0-.5.1-.6.2-.1.1-.2.2-.2.4 0 .2.1.3.2.4.1.1.4.2.9.4.6.2 1 .4 1.3.7.3.3.5.8.5 1.4z" />
     </svg>
   ),
   JavaScript: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <rect x="2" y="2" width="20" height="20" rx="3" />
-      <path d="M11 15c0 1.5-.7 2-2 2s-2-.5-2-1.5h1.8c0 .3.1.5.2.5s.2 0 .2-.2v-4.6h1.8V15zm5.5.8c0 .5-.2.7-.6.7s-.6-.2-.6-.7v-3.6h-1.8v3.8c0 1.5.8 2 2.2 2s2.2-.5 2.2-2v-3.8h-1.8v3.6z" fill="var(--color-pure-black)" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM11.5 17.5c0 1.3-.8 2-2.2 2-1.4 0-2.2-.7-2.2-2H8.9c0 .6.3.8.7.8.4 0 .6-.2.6-.8v-6.3h1.3v6.3zm7.3.2c0 .8-.5 1.3-1.3 1.3-.8 0-1.3-.5-1.3-1.3v-3.8h-1.3v4c0 1.3.9 2.2 2.6 2.2 1.7 0 2.6-.9 2.6-2.2v-4h-1.3v3.8z" />
     </svg>
   ),
   Dart: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M12 2L2 7l10 5 10-5-10-5zm0 10v10l10-5V7l-10 5zm0 0l-10-5v10l10 5V12z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21.4 8.7L12 2.1 2.6 8.7c-.4.3-.6.7-.6 1.2v6.2c0 .5.2.9.6 1.2l9.4 6.6 9.4-6.6c.4-.3.6-.7.6-1.2V9.9c0-.5-.2-.9-.6-1.2zm-9.4 11.2L5.2 15V9l6.8 4.9v6zm0-7.2L5.2 7.8 12 3l6.8 4.8-6.8 4.9zm6.8 3l-6.8 4.9v-6l6.8-4.9v6z" />
     </svg>
   ),
   Figma: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M8 2h4v4H8z" />
-      <circle cx="14" cy="4" r="2" />
-      <path d="M8 8h8v4H8z" />
-      <path d="M8 14h4v4H8z" />
-      <path d="M14 14a2 2 0 0 1-2 2h-2v-2h4z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M8.5 18C6.567 18 5 16.433 5 14.5S6.567 11 8.5 11H12v7H8.5zM12 2h-3.5C6.567 2 5 3.567 5 5.5S6.567 9 8.5 9H12V2zm0 9H8.5C6.567 11 5 12.567 5 14.5S6.567 18 8.5 18H12v-7zm3.5-9C13.567 2 12 3.567 12 5.5V9h3.5C17.433 9 19 7.433 19 5.5S17.433 2 15.5 2zm0 9C13.567 11 12 12.567 12 14.5v3.5c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5c0-1.933-1.567-3.5-3.5-3.5z" />
     </svg>
   ),
   HTML5: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M2 2h20l-2 18-8 2-8-2L2 2zm10 15.2l3.6-1 0.4-4.2H8.8l-0.2-2.3h7.8l0.2-2.3H6.2l0.6 6.8h5.2v3z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L2 5l1.6 14.2 8.4 2.8 8.4-2.8L22 5 12 2zm4.8 6.4h-7.6l.2 2h7.2l-.4 4.5-4.2 1.1-4.2-1.1-.3-2.6h2l.1 1.1 2.4.6 2.4-.6.2-2.1H7.8l-.6-6.4h9.8l-.4 3z" />
     </svg>
   ),
   CSS3: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M2 2h20l-2 18-8 2-8-2L2 2zm8 15.2l-3.6-1-0.2-2.3H8.8l0.1 1.2 3.1 0.8V13H7l-0.2-2.3h5.2V8.4H6.4L6.2 6.1h8.8l-0.4 4.5H12v2.4h3.6l-0.4 4.7-3.2 0.9v-1.4z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L2 5l1.6 14.2 8.4 2.8 8.4-2.8L22 5 12 2zm4.5 4.5H7.7l.2 2h6.4l-.2 2H7.5l.2 2H14l-.4 4-3.6 1-3.6-1-.2-2h-2l.3 4 5.5 1.5 5.5-1.5.8-9.5z" />
     </svg>
   ),
   "Node.js": (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm-1 14.5l-3-1.7V11l3 1.7v3.8zm5-2.8l-3 1.7V11.6l3-1.7v3.8z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L3 7.2v9.6L12 22l9-5.2V7.2L12 2zm7.6 13.9l-7.6 4.4-7.6-4.4V8.1l7.6-4.4 7.6 4.4v7.8zM12 6.5l-5.6 3.2V16L12 12.8v6.4l5.6-3.2V9.7L12 6.5z" />
     </svg>
   ),
   Python: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M12 2A10 10 0 0 0 2 12c0 2.2.7 4.2 2 5.8l1.4-1.4A8 8 0 0 1 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8c0 1.8-.6 3.5-1.6 4.8l1.4 1.4c1.3-1.6 2.2-3.6 2.2-6.2A10 10 0 0 0 12 2zm-1 5h2v6h-2V7zm0 8h2v2h-2v-2z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M11.9 2c-2.7 0-2.5 1.2-2.5 1.2v1.3H12v.6H9.4c-1.5 0-2.5.9-2.5 2.5v1.9c0 .7.6 1.3 1.3 1.3h1.3v-1.3c0-1.5 1.2-2.5 2.5-2.5h2.5V4.5S14.6 2 11.9 2zm2.7 4.4H12v.6h2.6c1.5 0 2.5-.9 2.5-2.5V2.6c0-.7-.6-1.3-1.3-1.3h-1.3v1.3c0 1.5-1.2 2.5-2.5 2.5H9.5v2.5s2.5 0 5.1-.2z" />
+      <path d="M12 22c2.7 0 2.5-1.2 2.5-1.2v-1.3H12v-.6h2.6c1.5 0 2.5-.9 2.5-2.5v-1.9c0-.7-.6-1.3-1.3-1.3h-1.3v1.3c0 1.5-1.2 2.5-2.5 2.5H9.5v2.5s2.5.1 5.1.1zm-2.7-4.4H12v-.6H9.4c-1.5 0-2.5.9-2.5 2.5v1.9c0 .7.6 1.3 1.3 1.3h1.3v-1.3c0-1.5 1.2-2.5 2.5-2.5h2.5v-2.5s-2.5.1-5.1.1z" />
     </svg>
   ),
   Laravel: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 4h16v16H4z" />
-      <path d="M12 4v16" />
-      <path d="M4 12h16" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
     </svg>
   ),
   PostgreSQL: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14H9v-2h4v2zm0-4H9v-2h4v2zm2-4H9V6h6v2z" />
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1 15.5h-2v-6.3h2v6.3zm0-7.7h-2V7.5h2v2.3zm5 7.7h-2V7.5h2v10z" />
     </svg>
   ),
   NestJS: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M12 2L2 7l10 5 10-5-10-5zm0 10v10l10-5V7l-10 5z" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M12 3l8 4.5v9L12 21L4 16.5v-9L12 3z" />
+      <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
     </svg>
   ),
   Git: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M19.17 12L12 4.83a.92.92 0 0 0-1.3 0L3.83 11.7a.92.92 0 0 0 0 1.3l7.17 7.17a.92.92 0 0 0 1.3 0l6.87-6.87a.92.92 0 0 0 0-1.3zM9 12a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="18" cy="18" r="3" />
+      <circle cx="6" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <path d="M18 15V9a4 4 0 0 0-4-4H9" />
+      <path d="M6 9v6" />
     </svg>
   ),
   PHP: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M4.5 6h4.5a3 3 0 0 1 0 6H6v6H4V6zm2 2v2h2.5a1 1 0 0 0 0-2H6.5zm7-2h2v5h3V6h2v12h-2v-5h-3v5h-2V6zm8 0h4.5a3 3 0 0 1 0 6h-3v6h-2V6zm2 2v2h2.5a1 1 0 0 0 0-2h-2.5z" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <ellipse cx="12" cy="12" rx="10" ry="6" />
+      <path d="M8 9v6M8 12h3a2.5 2.5 0 0 0 0-5H8M14 9v6M14 12h3a2.5 2.5 0 0 0 0-5h-3" />
     </svg>
   ),
   C: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <path d="M18 8a6 6 0 1 0 0 8" />
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+      <path d="M16 7a5 5 0 1 0 0 10" />
     </svg>
   ),
   Tailwind: (
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 3v10a4 4 0 0 1-4 4H4v4h4a8 8 0 0 0 8-8V3h-4z" />
       <path d="M16 12a4 4 0 0 1-4-4V4H8v4a8 8 0 0 0 8 8h4v-4h-4z" />
     </svg>
@@ -114,9 +112,8 @@ const techIcons: { [key: string]: React.ReactNode } = {
 };
 
 const fallbackIcon = (
-  <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-    <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2" fill="none" />
-    <path d="M9 9l6 6M15 9l-6 6" />
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
   </svg>
 );
 
@@ -140,7 +137,7 @@ export default function TechStackSection() {
       </div>
 
       <div className="grid-container" style={{ paddingBottom: 0, paddingTop: 0 }}>
-        <div className="col-12 text-center" style={{ marginBottom: "1rem" }}>
+        <div className="col-12 text-center" style={{ marginBottom: "1.2rem" }}>
           <ScrollReveal animationClass="scroll-reveal-simple">
             <h2 className="section-title rotate-text">
               My Arsenal
@@ -155,18 +152,11 @@ export default function TechStackSection() {
         <div className="conveyor-track conveyor-track-right">
           <div className="conveyor-inner scroll-right">
             {row1Items.map((tech, idx) => (
-              <div 
-                className="conveyor-card hard-shadow" 
-                key={`r1-${tech.name}-${idx}`}
-                style={{ "--card-accent": tech.color } as React.CSSProperties}
-              >
-                <div className="conveyor-card-border-top" style={{ backgroundColor: tech.color }} />
-                <div className="conveyor-card-content-wrap">
-                  <div className="conveyor-card-icon-container" style={{ color: tech.color }}>
-                    {techIcons[tech.name] || fallbackIcon}
-                  </div>
-                  <span className="conveyor-card-name">{tech.name}</span>
+              <div className="conveyor-item" key={`r1-${tech.name}-${idx}`}>
+                <div className="conveyor-icon-box">
+                  {techIcons[tech.name] || fallbackIcon}
                 </div>
+                <span className="conveyor-item-name">{tech.name}</span>
               </div>
             ))}
           </div>
@@ -176,18 +166,11 @@ export default function TechStackSection() {
         <div className="conveyor-track conveyor-track-left">
           <div className="conveyor-inner scroll-left">
             {row2Items.map((tech, idx) => (
-              <div 
-                className="conveyor-card hard-shadow" 
-                key={`r2-${tech.name}-${idx}`}
-                style={{ "--card-accent": tech.color } as React.CSSProperties}
-              >
-                <div className="conveyor-card-border-top" style={{ backgroundColor: tech.color }} />
-                <div className="conveyor-card-content-wrap">
-                  <div className="conveyor-card-icon-container" style={{ color: tech.color }}>
-                    {techIcons[tech.name] || fallbackIcon}
-                  </div>
-                  <span className="conveyor-card-name">{tech.name}</span>
+              <div className="conveyor-item" key={`r2-${tech.name}-${idx}`}>
+                <div className="conveyor-icon-box">
+                  {techIcons[tech.name] || fallbackIcon}
                 </div>
+                <span className="conveyor-item-name">{tech.name}</span>
               </div>
             ))}
           </div>
