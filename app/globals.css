@@ -2073,9 +2073,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.6rem; /* smaller subtext */
   opacity: 0.75;
   text-transform: uppercase;
-  letter-spac/* ============================================
-   TECH STACK CONVEYOR BELT / ARSENAL
-   ============================================ */
+  letter-spacing: 0.5px;
+}
 
 /* ============================================
    TECH STACK CONVEYOR BELT / ARSENAL
@@ -2103,7 +2102,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   width: 100%;
   position: relative;
-  padding: 4px 0;
+  padding: 4px 0 8px 0; /* extra bottom padding so shadow offset is not clipped */
 }
 
 /* Gradients overlay to fade out left and right edges */
@@ -2147,16 +2146,15 @@ h1, h2, h3, h4, h5, h6 {
 .conveyor-social-wrapper {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 48px;
-  margin-right: 8px; /* space for the shadow overflow */
-  margin-bottom: 8px;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
 }
 
 /* Square Stamp Button containing the SVG logo */
 .conveyor-social-btn {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: 3px solid var(--color-pure-black);
   background-color: var(--color-pure-white);
   color: var(--color-pure-black);
@@ -2165,21 +2163,26 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .conveyor-social-btn svg {
-  width: 26px;
-  height: 26px;
-  fill: currentColor;
+  display: block;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 /* Offset Shadow Box behind the Stamp */
 .conveyor-social-shadow {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 100%;
-  height: 100%;
+  top: 4px;
+  left: 4px;
+  width: 40px;
+  height: 40px;
   z-index: 1;
   border: 3px solid var(--color-pure-black);
   background-color: var(--card-accent, var(--color-pure-black));
