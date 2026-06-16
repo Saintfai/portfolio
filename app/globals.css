@@ -2077,9 +2077,13 @@ h1, h2, h3, h4, h5, h6 {
    TECH STACK CONVEYOR BELT / ARSENAL
    ============================================ */
 
+/* ============================================
+   TECH STACK CONVEYOR BELT / ARSENAL
+   ============================================ */
+
 .techstack-section {
   background-color: var(--color-wolverine-yellow);
-  padding: 2.2rem 0 2.8rem;
+  padding: 1.8rem 0 2rem;
   border-top: var(--border-heavy);
   border-bottom: var(--border-heavy);
   position: relative;
@@ -2090,7 +2094,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   position: relative;
   z-index: 2;
 }
@@ -2099,7 +2103,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   width: 100%;
   position: relative;
-  padding: 8px 0;
+  padding: 4px 0;
 }
 
 /* Gradients overlay to fade out left and right edges */
@@ -2126,7 +2130,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .conveyor-inner {
   display: flex;
-  gap: 1.8rem;
+  gap: 2rem;
   width: max-content;
 }
 
@@ -2139,70 +2143,46 @@ h1, h2, h3, h4, h5, h6 {
   animation: conveyor-scroll-left 35s linear infinite;
 }
 
-/* Pause on hover */
-.conveyor-track:hover .conveyor-inner {
-  animation-play-state: paused;
-}
-
-/* Individual Item Container */
-.conveyor-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  width: 75px;
+/* Individual Conveyor Item Wrapper (holds stamp + shadow) */
+.conveyor-social-wrapper {
   position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  margin-right: 8px; /* space for the shadow overflow */
+  margin-bottom: 8px;
 }
 
-/* Stamp / Icon Box in Comic Style */
-.conveyor-icon-box {
-  width: 50px;
-  height: 50px;
-  background-color: var(--color-pure-white);
+/* Square Stamp Button containing the SVG logo */
+.conveyor-social-btn {
+  width: 48px;
+  height: 48px;
   border: 3px solid var(--color-pure-black);
+  background-color: var(--color-pure-white);
+  color: var(--color-pure-black);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 3px 3px 0 var(--color-pure-black);
-  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background-color 0.2s;
-  color: var(--color-pure-black);
+  z-index: 2;
 }
 
-/* Stamp inside SVG */
-.conveyor-icon-box svg {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  transition: transform 0.15s ease;
+.conveyor-social-btn svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
 }
 
-/* Hover effects */
-.conveyor-item:hover .conveyor-icon-box {
-  transform: scale(1.08) translate(-2px, -2px) rotate(-3deg);
-  box-shadow: 5px 5px 0 var(--color-pure-black);
-  background-color: var(--color-wolverine-yellow); /* subtle comic pop */
-}
-
-.conveyor-item:hover .conveyor-icon-box svg {
-  transform: scale(1.05) rotate(3deg);
-}
-
-.conveyor-item-name {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: var(--color-pure-black);
-  text-align: center;
-  letter-spacing: -0.3px;
-  transition: transform 0.15s ease;
-  white-space: nowrap;
-}
-
-.conveyor-item:hover .conveyor-item-name {
-  transform: scale(1.05);
+/* Offset Shadow Box behind the Stamp */
+.conveyor-social-shadow {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border: 3px solid var(--color-pure-black);
+  background-color: var(--card-accent, var(--color-pure-black));
 }
 
 /* KEYFRAMES */
@@ -2211,13 +2191,13 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-33.333% - 0.6rem)); /* Compensates duplicate margins/gaps */
+    transform: translateX(calc(-33.333% - 0.66rem));
   }
 }
 
 @keyframes conveyor-scroll-left {
   0% {
-    transform: translateX(calc(-33.333% - 0.6rem));
+    transform: translateX(calc(-33.333% - 0.66rem));
   }
   100% {
     transform: translateX(0);
@@ -2237,52 +2217,45 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(to left, var(--noir-surface) 10%, transparent);
 }
 
-:root[data-theme='noir'] .conveyor-icon-box {
+:root[data-theme='noir'] .conveyor-social-btn {
   background-color: var(--noir-surface-elevated);
   border-color: var(--noir-accent);
   color: var(--color-pure-white);
-  box-shadow: 3px 3px 0 var(--noir-accent);
 }
 
-:root[data-theme='noir'] .conveyor-item-name {
-  color: var(--color-pure-white);
-}
-
-:root[data-theme='noir'] .conveyor-item:hover .conveyor-icon-box {
-  background-color: var(--noir-surface);
+:root[data-theme='noir'] .conveyor-social-shadow {
   border-color: var(--noir-accent);
-  box-shadow: 5px 5px 0 var(--noir-accent);
-  color: var(--noir-accent);
+  background-color: var(--noir-accent);
 }
 
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
   .techstack-section {
-    padding: 1.5rem 0 2rem;
+    padding: 1.2rem 0 1.5rem;
   }
   
-  .conveyor-item {
-    width: 60px;
+  .conveyor-social-wrapper {
+    width: 38px;
+    height: 38px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
   
-  .conveyor-icon-box {
-    width: 42px;
-    height: 42px;
-    border-width: 2.5px;
-    box-shadow: 2px 2px 0 var(--color-pure-black);
+  .conveyor-social-btn {
+    width: 38px;
+    height: 38px;
+    border-width: 2px;
   }
   
-  .conveyor-icon-box svg {
-    width: 22px;
-    height: 22px;
+  .conveyor-social-btn svg {
+    width: 20px;
+    height: 20px;
   }
   
-  .conveyor-item-name {
-    font-size: 0.58rem;
-  }
-  
-  :root[data-theme='noir'] .conveyor-icon-box {
-    box-shadow: 2px 2px 0 var(--noir-accent);
+  .conveyor-social-shadow {
+    top: 4px;
+    left: 4px;
+    border-width: 2px;
   }
   
   .conveyor-track::before,

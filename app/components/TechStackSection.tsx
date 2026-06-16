@@ -3,7 +3,6 @@
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
 
-// Pure monochrome SVGs (using currentColor so they adapt to theme)
 const techIcons: { [key: string]: React.ReactNode } = {
   React: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -137,7 +136,7 @@ export default function TechStackSection() {
       </div>
 
       <div className="grid-container" style={{ paddingBottom: 0, paddingTop: 0 }}>
-        <div className="col-12 text-center" style={{ marginBottom: "1.2rem" }}>
+        <div className="col-12 text-center" style={{ marginBottom: "1rem" }}>
           <ScrollReveal animationClass="scroll-reveal-simple">
             <h2 className="section-title rotate-text">
               My Arsenal
@@ -152,11 +151,15 @@ export default function TechStackSection() {
         <div className="conveyor-track conveyor-track-right">
           <div className="conveyor-inner scroll-right">
             {row1Items.map((tech, idx) => (
-              <div className="conveyor-item" key={`r1-${tech.name}-${idx}`}>
-                <div className="conveyor-icon-box">
+              <div 
+                className="conveyor-social-wrapper" 
+                key={`r1-${tech.name}-${idx}`}
+                style={{ "--card-accent": tech.color } as React.CSSProperties}
+              >
+                <div className="conveyor-social-btn">
                   {techIcons[tech.name] || fallbackIcon}
                 </div>
-                <span className="conveyor-item-name">{tech.name}</span>
+                <div className="conveyor-social-shadow"></div>
               </div>
             ))}
           </div>
@@ -166,11 +169,15 @@ export default function TechStackSection() {
         <div className="conveyor-track conveyor-track-left">
           <div className="conveyor-inner scroll-left">
             {row2Items.map((tech, idx) => (
-              <div className="conveyor-item" key={`r2-${tech.name}-${idx}`}>
-                <div className="conveyor-icon-box">
+              <div 
+                className="conveyor-social-wrapper" 
+                key={`r2-${tech.name}-${idx}`}
+                style={{ "--card-accent": tech.color } as React.CSSProperties}
+              >
+                <div className="conveyor-social-btn">
                   {techIcons[tech.name] || fallbackIcon}
                 </div>
-                <span className="conveyor-item-name">{tech.name}</span>
+                <div className="conveyor-social-shadow"></div>
               </div>
             ))}
           </div>
