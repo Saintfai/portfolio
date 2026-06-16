@@ -67,7 +67,8 @@
 }
 
 /* Hide comic decorations in noir */
-:root[data-theme='noir'] .bg-decorations {
+:root[data-theme='noir'] .bg-decorations,
+:root[data-theme='noir'] .speed-lines::before {
   display: none !important;
 }
 
