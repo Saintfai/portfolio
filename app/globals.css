@@ -2075,3 +2075,236 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+/* ============================================
+   TECH STACK CONVEYOR BELT / ARSENAL
+   ============================================ */
+
+.techstack-section {
+  background-color: var(--color-wolverine-yellow);
+  padding: 5rem 0 6rem;
+  border-top: var(--border-heavy);
+  border-bottom: var(--border-heavy);
+  position: relative;
+  overflow: hidden;
+}
+
+.conveyor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.conveyor-track {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* Gradients overlay to fade out left and right edges */
+.conveyor-track::before,
+.conveyor-track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.conveyor-track::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-wolverine-yellow) 10%, transparent);
+}
+
+.conveyor-track::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-wolverine-yellow) 10%, transparent);
+}
+
+.conveyor-inner {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+}
+
+/* Animation directions: Infinite smooth movement */
+.scroll-right {
+  animation: conveyor-scroll-right 35s linear infinite;
+}
+
+.scroll-left {
+  animation: conveyor-scroll-left 35s linear infinite;
+}
+
+/* Pause on hover */
+.conveyor-track:hover .conveyor-inner {
+  animation-play-state: paused;
+}
+
+/* Individual Cards */
+.conveyor-card {
+  min-width: 130px;
+  background-color: var(--color-pure-white);
+  border: var(--border-heavy);
+  border-radius: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Border accent color at the top of the card */
+.conveyor-card-border-top {
+  height: 6px;
+  width: 100%;
+  border-bottom: 2px solid var(--color-pure-black);
+}
+
+.conveyor-card-content-wrap {
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Hover effects */
+.conveyor-card:hover {
+  transform: scale(1.08) rotate(1.5deg);
+  z-index: 10;
+  border-color: var(--color-pure-black);
+}
+
+/* Card custom stack offset color on hover uses the accent color */
+.conveyor-card::after {
+  content: "";
+  position: absolute;
+  top: var(--stack-offset);
+  left: var(--stack-offset);
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-pure-black);
+  z-index: -1;
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.conveyor-card:hover::after {
+  opacity: 1;
+  transform: translate(2px, 2px);
+  background-color: var(--card-accent, var(--color-pure-black));
+}
+
+.conveyor-card-icon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.conveyor-card:hover .conveyor-card-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.conveyor-card-name {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--color-pure-black);
+  text-align: center;
+}
+
+/* KEYFRAMES */
+@keyframes conveyor-scroll-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-33.333% - 0.5rem)); /* Compensates duplicate margins/gaps */
+  }
+}
+
+@keyframes conveyor-scroll-left {
+  0% {
+    transform: translateX(calc(-33.333% - 0.5rem));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* NOIR THEME OVERRIDES */
+:root[data-theme='noir'] .techstack-section {
+  background-color: var(--noir-surface);
+}
+
+:root[data-theme='noir'] .conveyor-track::before {
+  background: linear-gradient(to right, var(--noir-surface) 10%, transparent);
+}
+
+:root[data-theme='noir'] .conveyor-track::after {
+  background: linear-gradient(to left, var(--noir-surface) 10%, transparent);
+}
+
+:root[data-theme='noir'] .conveyor-card {
+  background-color: var(--noir-surface-elevated);
+  border-color: var(--noir-accent);
+}
+
+:root[data-theme='noir'] .conveyor-card-name {
+  color: var(--color-pure-white);
+}
+
+:root[data-theme='noir'] .conveyor-card::after {
+  background-color: var(--noir-accent);
+}
+
+:root[data-theme='noir'] .conveyor-card:hover {
+  border-color: var(--noir-accent);
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.25);
+}
+
+:root[data-theme='noir'] .conveyor-card:hover::after {
+  background-color: var(--noir-accent);
+}
+
+/* Ensure devicon color logo isn't grayed out in noir mode if desired, or let it match.
+   Comics look neat with vibrant logos popping out! */
+:root[data-theme='noir'] .conveyor-card-icon {
+  filter: none !important;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .techstack-section {
+    padding: 4rem 0 5rem;
+  }
+  
+  .conveyor-card {
+    min-width: 105px;
+  }
+  
+  .conveyor-card-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .conveyor-card-name {
+    font-size: 0.65rem;
+  }
+  
+  .conveyor-track::before,
+  .conveyor-track::after {
+    width: 60px;
+  }
+}
+
