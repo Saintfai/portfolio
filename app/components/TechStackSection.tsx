@@ -119,9 +119,11 @@ const fallbackIcon = (
 export default function TechStackSection() {
   const { techStack = [], techStackRow2 = [] } = portfolioData as any;
 
+  // Combine all tech stack items into a single array
+  const allTech = [...techStack, ...techStackRow2];
+
   // Duplicate items to ensure a seamless looping animation
-  const row1Items = [...techStack, ...techStack, ...techStack];
-  const row2Items = [...techStackRow2, ...techStackRow2, ...techStackRow2];
+  const rowItems = [...allTech, ...allTech, ...allTech];
 
   return (
     <section id="techstack" className="techstack-section">
@@ -139,7 +141,7 @@ export default function TechStackSection() {
         <div className="col-12 text-center" style={{ marginBottom: "1rem" }}>
           <ScrollReveal animationClass="scroll-reveal-simple">
             <h2 className="section-title rotate-text">
-              My Arsenal
+              Tech Stack
             </h2>
           </ScrollReveal>
         </div>
@@ -147,31 +149,13 @@ export default function TechStackSection() {
 
       {/* Conveyor Belt Wrapper */}
       <div className="conveyor-container">
-        {/* Row 1: Left to Right */}
+        {/* Single Row: Right to Left */}
         <div className="conveyor-track conveyor-track-right">
           <div className="conveyor-inner scroll-right">
-            {row1Items.map((tech, idx) => (
+            {rowItems.map((tech, idx) => (
               <div 
                 className="conveyor-social-wrapper" 
                 key={`r1-${tech.name}-${idx}`}
-                style={{ "--card-accent": tech.color } as React.CSSProperties}
-              >
-                <div className="conveyor-social-btn">
-                  {techIcons[tech.name] || fallbackIcon}
-                </div>
-                <div className="conveyor-social-shadow"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: Right to Left */}
-        <div className="conveyor-track conveyor-track-left">
-          <div className="conveyor-inner scroll-left">
-            {row2Items.map((tech, idx) => (
-              <div 
-                className="conveyor-social-wrapper" 
-                key={`r2-${tech.name}-${idx}`}
                 style={{ "--card-accent": tech.color } as React.CSSProperties}
               >
                 <div className="conveyor-social-btn">

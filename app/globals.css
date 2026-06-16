@@ -2129,7 +2129,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .conveyor-inner {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   width: max-content;
 }
 
@@ -2147,14 +2147,14 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   display: inline-block;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
 }
 
 /* Square Stamp Button containing the SVG logo */
 .conveyor-social-btn {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border: 3px solid var(--color-pure-black);
   background-color: var(--color-pure-white);
   color: var(--color-pure-black);
@@ -2168,21 +2168,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .conveyor-social-btn svg {
   display: block;
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 20px;
-  max-height: 20px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
 }
 
 /* Offset Shadow Box behind the Stamp */
 .conveyor-social-shadow {
   position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 40px;
-  height: 40px;
+  top: 6px;
+  left: 6px;
+  width: 56px;
+  height: 56px;
   z-index: 1;
   border: 3px solid var(--color-pure-black);
   background-color: var(--card-accent, var(--color-pure-black));
@@ -2194,13 +2194,13 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-33.333% - 0.66rem));
+    transform: translateX(calc(-33.333% - 1rem));
   }
 }
 
 @keyframes conveyor-scroll-left {
   0% {
-    transform: translateX(calc(-33.333% - 0.66rem));
+    transform: translateX(calc(-33.333% - 1rem));
   }
   100% {
     transform: translateX(0);
