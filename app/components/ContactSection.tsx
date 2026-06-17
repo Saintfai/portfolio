@@ -72,7 +72,7 @@ export default function ContactSection() {
             Send a<br/><span className="contact-highlight">Signal</span>
           </h2>
           <p className="contact-description">
-            Need a hero for your next project? Fill out the form or send a message via the nearest Bat-Signal (or email).
+            Need a hero for your next project? Fill out the form or send a message via email.
           </p>
           <div className="contact-social-row">
             <div className="social-btn-wrapper">
