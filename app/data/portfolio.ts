@@ -17,7 +17,7 @@ export const portfolioData = {
       id: "1",
       title: "GastroLog",
       image: "",
-      description: "An automated web scraper and notification bot built in Python to monitor and report academic attendance changes.",
+      description: "A smart journal web application specifically designed for GERD and acid reflux sufferers.",
       fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
       year: "2026",
       tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
