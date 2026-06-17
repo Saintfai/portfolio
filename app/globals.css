@@ -2188,68 +2188,48 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--card-accent, var(--color-pure-black));
 }
 
-/* Tooltip */
+/* ==============================
+   TECH TOOLTIP — matches .social-tooltip style
+   ============================== */
+
 .tech-tooltip {
   position: absolute;
-  bottom: calc(100% + 12px);
+  bottom: calc(100% + 10px);
   left: 50%;
-  transform: translateX(-50%) scale(0.85);
-  background-color: var(--card-accent, var(--color-pure-white));
-  color: var(--color-pure-white);
+  transform: translateX(-50%) scale(0);
+  background-color: var(--color-pure-white);
+  color: var(--color-pure-black);
   border: 2px solid var(--color-pure-black);
-  padding: 6px 12px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
-  z-index: 100;
-  box-shadow: 3px 3px 0 var(--color-pure-black);
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
   white-space: nowrap;
-  
-  /* Fallback color if the accent is too light */
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 var(--color-pure-black);
+  pointer-events: none;
+  transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
 }
 
-.tech-tooltip-name {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.tech-tooltip-arrow {
+/* Small speech tail */
+.tech-tooltip::after {
+  content: "";
   position: absolute;
-  top: 100%;
+  bottom: -6px;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid var(--color-pure-black);
+  border-width: 6px 6px 0 0;
+  border-style: solid;
+  border-color: var(--color-pure-black) transparent;
 }
 
-.tech-tooltip-arrow::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: -4px;
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid var(--card-accent, var(--color-pure-white));
-}
-
-/* Hover state */
+/* Show on hover */
 .conveyor-social-wrapper:hover .tech-tooltip {
-  opacity: 1;
-  visibility: visible;
   transform: translateX(-50%) scale(1);
 }
 
-/* Move wrapper above others when hovered */
+/* Bring wrapper above siblings so tooltip is never hidden */
 .conveyor-social-wrapper:hover {
   z-index: 50;
 }

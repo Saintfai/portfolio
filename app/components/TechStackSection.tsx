@@ -116,29 +116,14 @@ const fallbackIcon = (
   </svg>
 );
 
-import React, { useRef } from "react";
-
 export default function TechStackSection() {
   const { techStack = [], techStackRow2 = [] } = portfolioData as any;
-  const conveyorRef = useRef<HTMLDivElement>(null);
 
   // Combine all tech stack items into a single array
   const allTech = [...techStack, ...techStackRow2];
 
   // Duplicate items to ensure a seamless looping animation
   const rowItems = [...allTech, ...allTech, ...allTech];
-
-  const handleMouseEnter = () => {
-    if (conveyorRef.current) {
-      conveyorRef.current.style.animationPlayState = "paused";
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (conveyorRef.current) {
-      conveyorRef.current.style.animationPlayState = "running";
-    }
-  };
 
   return (
     <section id="techstack" className="techstack-section">
@@ -166,20 +151,15 @@ export default function TechStackSection() {
       <div className="conveyor-container">
         {/* Single Row: Right to Left */}
         <div className="conveyor-track conveyor-track-right">
-          <div className="conveyor-inner scroll-right" ref={conveyorRef}>
+          <div className="conveyor-inner scroll-right">
             {rowItems.map((tech, idx) => (
               <div 
-                className="conveyor-social-wrapper group" 
+                className="conveyor-social-wrapper" 
                 key={`r1-${tech.name}-${idx}`}
                 style={{ "--card-accent": tech.color } as React.CSSProperties}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
               >
                 {/* Tooltip */}
-                <div className="tech-tooltip">
-                  <span className="tech-tooltip-name">{tech.name}</span>
-                  <div className="tech-tooltip-arrow" />
-                </div>
+                <div className="tech-tooltip">{tech.name}</div>
 
                 <div className="conveyor-social-btn">
                   {techIcons[tech.name] || fallbackIcon}
@@ -193,3 +173,4 @@ export default function TechStackSection() {
     </section>
   );
 }
+
