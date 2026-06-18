@@ -2386,7 +2386,7 @@ h1, h2, h3, h4, h5, h6 {
     rgba(226, 54, 54, 0.12) 4deg,
     rgba(226, 54, 54, 0.12) 4.5deg
   );
-  animation: splash-spin-lines 3s linear infinite;
+  animation: splash-spin-lines 10s linear infinite;
   transform-origin: center center;
   pointer-events: none;
 }
@@ -2449,5 +2449,42 @@ h1, h2, h3, h4, h5, h6 {
 }
 .splash-corner-tl { top: 24px;    left: 24px;  }
 .splash-corner-tr { top: 24px;    right: 24px; }
-.splash-corner-bl { bottom: 24px; left: 24px;  }
 .splash-corner-br { bottom: 24px; right: 24px; }
+
+/* ============================================
+   PAGE REVEAL ANIMATIONS (Post-Splash)
+   ============================================ */
+
+/* Hide everything when splash is active */
+body.splash-active .navbar { opacity: 0; transform: translateY(-40px); }
+body.splash-active .hero-section { opacity: 0; transform: translateY(30px); }
+body.splash-active .page-wrapper > *:not(.navbar):not(.hero-section) { opacity: 0; }
+
+/* Keyframes for reveals */
+@keyframes reveal-slide-down {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Trigger animations when splash is revealed */
+body.splash-revealed .navbar {
+  animation: reveal-slide-down 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s both;
+}
+
+body.splash-revealed .hero-section {
+  animation: reveal-fade-up 0.6s ease-out 0.1s both;
+}
+
+body.splash-revealed .page-wrapper > *:not(.navbar):not(.hero-section) {
+  animation: reveal-fade-in 0.5s ease-out 0.25s both;
+}

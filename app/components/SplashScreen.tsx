@@ -12,10 +12,13 @@ export default function SplashScreen() {
     if (hasSeenSplash) return;
 
     setVisible(true);
+    document.body.classList.add("splash-active");
 
     // Start fade-out after 2.2s
     const fadeTimer = setTimeout(() => {
       setHiding(true);
+      document.body.classList.remove("splash-active");
+      document.body.classList.add("splash-revealed");
     }, 2200);
 
     // Fully remove after animation completes
@@ -27,6 +30,7 @@ export default function SplashScreen() {
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
+      document.body.classList.remove("splash-active", "splash-revealed");
     };
   }, []);
 
@@ -43,10 +47,10 @@ export default function SplashScreen() {
         <span className="splash-pow">⚡</span>
 
         {/* Main title */}
-        <h1 className="splash-title">The Heavy Ink</h1>
+        <h1 className="splash-title">PORTFOLIO</h1>
 
         {/* Subtitle */}
-        <p className="splash-subtitle">Portfolio Loading...</p>
+        <p className="splash-subtitle">Loading...</p>
       </div>
 
       {/* Corner decorations */}
