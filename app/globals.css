@@ -2317,12 +2317,6 @@ h1, h2, h3, h4, h5, h6 {
    SPLASH SCREEN — Speed Lines Flash
    ============================================ */
 
-/* Keyframe: speed lines spinning */
-@keyframes splash-spin-lines {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 /* Keyframe: title slides up from below */
 @keyframes splash-title-in {
   0% {
@@ -2372,23 +2366,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .splash-overlay.splash-hiding {
   animation: splash-fade-out 0.6s ease forwards;
-}
-
-/* Speed lines burst (same technique as .speed-lines::before but faster) */
-.splash-speed-lines {
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  background: repeating-conic-gradient(
-    transparent 0deg,
-    transparent 4deg,
-    rgba(226, 54, 54, 0.12) 4deg,
-    rgba(226, 54, 54, 0.12) 4.5deg
-  );
-  animation: splash-spin-lines 10s linear infinite;
-  transform-origin: center center;
-  pointer-events: none;
 }
 
 /* Center content box */
@@ -2456,35 +2433,26 @@ h1, h2, h3, h4, h5, h6 {
    ============================================ */
 
 /* Hide everything when splash is active */
-body.splash-active .navbar { opacity: 0; transform: translateY(-40px); }
-body.splash-active .hero-section { opacity: 0; transform: translateY(30px); }
-body.splash-active .page-wrapper > *:not(.navbar):not(.hero-section) { opacity: 0; }
+body.splash-active .navbar { opacity: 0; transform: scale(0.8); }
+body.splash-active .hero-section { opacity: 0; transform: scale(0.8); }
+body.splash-active .page-wrapper > *:not(.navbar):not(.hero-section) { opacity: 0; transform: scale(0.8); }
 
 /* Keyframes for reveals */
-@keyframes reveal-slide-down {
-  from { opacity: 0; transform: translateY(-40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes reveal-fade-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes reveal-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+@keyframes reveal-pop-up {
+  0%   { opacity: 0; transform: scale(0.8); }
+  70%  { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 /* Trigger animations when splash is revealed */
 body.splash-revealed .navbar {
-  animation: reveal-slide-down 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s both;
+  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s both;
 }
 
 body.splash-revealed .hero-section {
-  animation: reveal-fade-up 0.6s ease-out 0.1s both;
+  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s both;
 }
 
 body.splash-revealed .page-wrapper > *:not(.navbar):not(.hero-section) {
-  animation: reveal-fade-in 0.5s ease-out 0.25s both;
+  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s both;
 }

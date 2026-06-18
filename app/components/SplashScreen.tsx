@@ -38,9 +38,6 @@ export default function SplashScreen() {
 
   return (
     <div className={`splash-overlay ${hiding ? "splash-hiding" : ""}`} aria-hidden="true">
-      {/* Speed lines burst background */}
-      <div className="splash-speed-lines" />
-
       {/* Center content */}
       <div className="splash-content">
         {/* Action word */}
