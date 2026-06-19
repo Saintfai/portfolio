@@ -3,15 +3,19 @@
 import { useEffect, useState } from "react";
 
 export default function SplashScreen() {
-  const [visible, setVisible] = useState(false);
+  // Start visible so the splash is part of the server-rendered HTML and covers
+  // the page on the very first paint (prevents a flash of content beforehand).
+  const [visible, setVisible] = useState(true);
   const [hiding, setHiding] = useState(false);
 
   useEffect(() => {
-    // Only show once per session
+    // Only show once per session — if already seen, unmount immediately.
     const hasSeenSplash = sessionStorage.getItem("splash-shown");
-    if (hasSeenSplash) return;
+    if (hasSeenSplash) {
+      setVisible(false);
+      return;
+    }
 
-    setVisible(true);
     document.body.classList.add("splash-active");
 
     // Start fade-out after 2.2s

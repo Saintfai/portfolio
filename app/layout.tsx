@@ -39,6 +39,15 @@ export default function RootLayout({
       className={`${anybody.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Runs before first paint: if the splash was already shown this
+            session, hide the server-rendered overlay so it never flashes. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem('splash-shown'))document.documentElement.classList.add('splash-seen')}catch(e){}`,
+          }}
+        />
+      </head>
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false} themes={['light', 'noir']}>
           <SplashScreen />
