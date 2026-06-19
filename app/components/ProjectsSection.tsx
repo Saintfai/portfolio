@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
@@ -8,6 +9,9 @@ import ScrollReveal from "./ScrollReveal";
 export default function ProjectsSection() {
   const { projects } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
   
   // Design elements mapped to project index (shuffled/randomized order)
   const themeColors = ["bg-blue", "bg-black", "bg-red", "bg-black", "bg-blue"];
@@ -92,8 +96,8 @@ export default function ProjectsSection() {
         })}
       </div>
 
-      {/* Comic Detail Modal */}
-      {selectedProject && (
+      {/* Comic Detail Modal — rendered via Portal to escape ScrollReveal transform */}
+      {mounted && selectedProject && createPortal(
         <div className="comic-modal-overlay" onClick={() => setSelectedProject(null)}>
           <div className="comic-modal-card hard-shadow" onClick={(e) => e.stopPropagation()}>
             <button className="comic-modal-close" onClick={() => setSelectedProject(null)}>
@@ -150,7 +154,8 @@ export default function ProjectsSection() {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </ScrollReveal>
   );
