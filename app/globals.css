@@ -872,13 +872,13 @@ h1, h2, h3, h4, h5, h6 {
 /* Web colors based on theme */
 .spiderweb-backdrop-svg path {
   stroke: var(--color-pure-black);
-  stroke-width: 2;
+  stroke-width: 1;
   fill: none;
 }
 
 :root[data-theme='noir'] .spiderweb-backdrop-svg path {
   stroke: var(--color-pure-white);
-  opacity: 0.3;
+  opacity: 0.8;
 }
 
 /* Hanging Spider Styles */
