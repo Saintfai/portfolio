@@ -863,22 +863,22 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.12; /* Slightly increased because of the fading effect */
+  opacity: 0.28; /* Increased for stronger visibility */
   transition: opacity 0.3s ease;
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
-  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0) 80%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0) 95%);
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0) 95%);
 }
 
 /* Web colors based on theme */
 .spiderweb-backdrop-svg path {
   stroke: var(--color-pure-black);
-  stroke-width: 1.5;
+  stroke-width: 2;
   fill: none;
 }
 
 :root[data-theme='noir'] .spiderweb-backdrop-svg path {
   stroke: var(--color-pure-white);
-  opacity: 0.15;
+  opacity: 0.3;
 }
 
 /* Hanging Spider Styles */
