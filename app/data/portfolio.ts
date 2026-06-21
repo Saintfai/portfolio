@@ -36,7 +36,7 @@ export const portfolioData = {
     {
       id: "3",
       title: "Kegiatin",
-      image: "",
+      image: "/Kegiatin.png",
       description: "Offline-first event management app for PD Pemuda Persis Kab. Bandung.",
       fullDescription: "An offline-first event management application designed to digitalize event administration, resolve attendance tracking issues in areas with poor internet connection (blank spots), provide a systematic central repository for event materials, and integrate structured validation for official organization memberships.",
       year: "2026",
