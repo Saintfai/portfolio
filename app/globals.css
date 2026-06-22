@@ -1459,7 +1459,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Inline fixed-width container: keeps paragraph text from shifting while typing */
 .typing-inline-container {
   display: inline-block;
-  min-width: 14rem;       /* Reserves enough space for the longest role */
+  min-width: 12.5em;      /* Scaled down since font size is smaller */
   border-bottom: 2px dashed var(--color-pure-black);
   margin: 0 4px;
   vertical-align: baseline;
@@ -1470,7 +1470,7 @@ h1, h2, h3, h4, h5, h6 {
 .typing-description {
   display: inline;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1em; /* Matches paragraph text exactly */
   font-weight: 800;
   font-style: italic;
   text-transform: uppercase;
