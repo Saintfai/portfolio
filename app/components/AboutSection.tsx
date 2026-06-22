@@ -1,6 +1,7 @@
 import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
+import RotatingTitle from "./RotatingTitle";
 
 export default function AboutSection() {
   const { profile } = portfolioData;
@@ -58,6 +59,7 @@ export default function AboutSection() {
               {/* Right Column: Article */}
               <div className="newspaper-article">
                 <h4 className="article-title">THE PROFILE</h4>
+                <RotatingTitle roles={profile.roles} />
                 <div className="article-body">
                   {profile.bio.map((paragraph, idx) => {
                     if (idx === 0) {

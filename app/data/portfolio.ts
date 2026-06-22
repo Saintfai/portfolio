@@ -6,6 +6,13 @@ export const portfolioData = {
     alias: "Fairuz Sheva",
     University: "Politeknik Negeri Bandung",
     skills: ["Flutter", "React", "Next.js", "Figma"],
+    roles: [
+      "Software Developer",
+      "Mobile Developer",
+      "System Analyst",
+      "Web Developer",
+      "Problem Solver",
+    ],
     bio: [
       "I am a Computer Science student and Software Developer with a versatile interest in building and analyzing digital systems. My expertise spans Mobile Development (Flutter) and Web Development, where I focus on creating seamless, high-performance applications from the front to the backend.",
       "Beyond writing code, I have a strong passion for System Analysis. I enjoy the process of auditing requirements, designing domain models, and applying GRASP patterns to ensure every project is built on a solid, scalable architecture.",

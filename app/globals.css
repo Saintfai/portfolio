@@ -1318,6 +1318,113 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
+/* --- ROTATING JOB TITLE (glitch / ink swap) --- */
+.rotating-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5ch;
+  margin-top: -0.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-pure-black);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.rotating-title-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  opacity: 0.6;
+}
+
+.rotating-title-word {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--noir-accent);
+  /* entrance: each new word stamps in like fresh ink */
+  animation: ink-stamp 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Glitch layers — only painted during the swap burst. */
+.rotating-title-word::before,
+.rotating-title-word::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.rotating-title-word.is-glitching::before {
+  opacity: 0.85;
+  color: #ff2d3b;
+  animation: glitch-shift-a 0.4s steps(2, end);
+}
+
+.rotating-title-word.is-glitching::after {
+  opacity: 0.85;
+  color: #2de2ff;
+  animation: glitch-shift-b 0.4s steps(2, end);
+}
+
+.rotating-title-word.is-glitching {
+  animation: glitch-skew 0.4s steps(2, end);
+}
+
+@keyframes ink-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.15) translateY(2px);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glitch-skew {
+  0% { transform: translate(0, 0) skewX(0); }
+  25% { transform: translate(-2px, 1px) skewX(-6deg); }
+  50% { transform: translate(2px, -1px) skewX(4deg); }
+  75% { transform: translate(-1px, 0) skewX(-2deg); }
+  100% { transform: translate(0, 0) skewX(0); }
+}
+
+@keyframes glitch-shift-a {
+  0% { transform: translate(0, 0); clip-path: inset(0 0 55% 0); }
+  50% { transform: translate(-3px, -2px); clip-path: inset(40% 0 20% 0); }
+  100% { transform: translate(2px, 1px); clip-path: inset(70% 0 0 0); }
+}
+
+@keyframes glitch-shift-b {
+  0% { transform: translate(0, 0); clip-path: inset(60% 0 0 0); }
+  50% { transform: translate(3px, 2px); clip-path: inset(15% 0 45% 0); }
+  100% { transform: translate(-2px, -1px); clip-path: inset(0 0 65% 0); }
+}
+
+/* Respect users who don't want motion. */
+@media (prefers-reduced-motion: reduce) {
+  .rotating-title-word,
+  .rotating-title-word.is-glitching,
+  .rotating-title-word.is-glitching::before,
+  .rotating-title-word.is-glitching::after {
+    animation: none;
+  }
+  .rotating-title-word.is-glitching::before,
+  .rotating-title-word.is-glitching::after {
+    opacity: 0;
+  }
+}
+
 .article-body {
   column-count: 1;
   column-gap: 24px;
