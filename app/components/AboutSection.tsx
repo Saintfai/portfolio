@@ -60,13 +60,14 @@ export default function AboutSection() {
               <div className="newspaper-article">
                 <h4 className="article-title">THE PROFILE</h4>
                 <div className="article-body">
+                  <div className="typing-description-wrapper">
+                    <TypingDescription texts={profile.roles.map(r => `I am a ${r}.`)} />
+                  </div>
                   {profile.bio.map((paragraph, idx) => {
                     if (idx === 0) {
                       return (
                         <p key={idx}>
-                          <span className="dropcap">{paragraph.charAt(0)}</span>
-                          <TypingDescription texts={profile.roles.map(r => `I am a ${r}. `)} />
-                          {paragraph.slice(1)}
+                          <span className="dropcap">{paragraph.charAt(0)}</span>{paragraph.slice(1)}
                         </p>
                       );
                     }
