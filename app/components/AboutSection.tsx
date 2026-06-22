@@ -60,16 +60,24 @@ export default function AboutSection() {
               <div className="newspaper-article">
                 <h4 className="article-title">THE PROFILE</h4>
                 <div className="article-body">
-                  <div className="typing-description-wrapper">
-                    <TypingDescription texts={profile.roles.map(r => `I am a ${r}.`)} />
-                  </div>
                   {profile.bio.map((paragraph, idx) => {
                     if (idx === 0) {
-                      return (
-                        <p key={idx}>
-                          <span className="dropcap">{paragraph.charAt(0)}</span>{paragraph.slice(1)}
-                        </p>
-                      );
+                      const targetStr = "Computer Science student and Software Developer";
+                      const parts = paragraph.split(targetStr);
+                      if (parts.length === 2) {
+                        const firstPart = parts[0];
+                        const secondPart = parts[1];
+                        return (
+                          <p key={idx}>
+                            <span className="dropcap">{firstPart.charAt(0)}</span>
+                            {firstPart.slice(1)}
+                            <span className="typing-inline-container">
+                              <TypingDescription texts={profile.roles} />
+                            </span>
+                            {secondPart}
+                          </p>
+                        );
+                      }
                     }
                     return <p key={idx}>{paragraph}</p>;
                   })}

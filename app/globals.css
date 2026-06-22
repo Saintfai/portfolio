@@ -1456,14 +1456,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- COMIC TYPEWRITER DESCRIPTION --- */
 
-/* Fixed-height wrapper: breaks out of columns, never shifts content below */
-.typing-description-wrapper {
-  column-span: all;
-  display: block;
-  min-height: 2.2em;       /* lock height = 1 line of text, no layout shift */
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
+/* Inline fixed-width container: keeps paragraph text from shifting while typing */
+.typing-inline-container {
+  display: inline-block;
+  min-width: 14rem;       /* Reserves enough space for the longest role */
   border-bottom: 2px dashed var(--color-pure-black);
+  margin: 0 4px;
+  vertical-align: baseline;
+  text-align: left;
 }
 
 /* The typing span — comic display font, uppercase, bold italic */
