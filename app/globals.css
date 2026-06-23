@@ -1461,8 +1461,29 @@ h1, h2, h3, h4, h5, h6 {
   display: inline;
 }
 
+/* Wrapper: sits inline, reserves width of the longest role text */
+.typing-description-wrapper {
+  position: relative;
+  display: inline-grid;
+  vertical-align: baseline;
+}
+
+/* Hidden sizer spans — all stack in the same grid cell to size the container to the longest text */
+.typing-sizer {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: pre;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  letter-spacing: inherit;
+}
+
 /* The typing span — inherits paragraph styling for seamless blend */
 .typing-description {
+  grid-area: 1 / 1;
   display: inline;
   font-family: inherit;
   font-size: inherit;
@@ -1471,6 +1492,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none;
   letter-spacing: inherit;
   color: inherit;
+  white-space: pre;
 }
 
 /* Comic cursor — fat blinking red bar */

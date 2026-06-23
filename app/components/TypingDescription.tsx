@@ -69,9 +69,18 @@ export default function TypingDescription({
   }, [phase, charIndex, textIndex, texts, typingSpeed, pauseDuration, erasingSpeed]);
 
   return (
-    <span className={`typing-description${inkBurst ? " ink-burst" : ""}`} aria-live="polite">
-      {displayedText}
-      <span className="typing-cursor" aria-hidden="true">|</span>
+    <span className="typing-description-wrapper" aria-live="polite">
+      {/* Hidden texts to reserve the width of the longest role */}
+      {texts.map((text, i) => (
+        <span key={i} className="typing-sizer" aria-hidden="true">
+          {text}
+        </span>
+      ))}
+      {/* Visible typing text overlaid on top */}
+      <span className={`typing-description${inkBurst ? " ink-burst" : ""}`}>
+        {displayedText}
+        <span className="typing-cursor" aria-hidden="true">|</span>
+      </span>
     </span>
   );
 }
