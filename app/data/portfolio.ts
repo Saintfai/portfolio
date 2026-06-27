@@ -1,3 +1,16 @@
+export interface Project {
+  id: string;
+  title: string;
+  image: string;
+  description: string;
+  fullDescription: string;
+  year: string;
+  tags: string[];
+  githubUrl: string;
+  inProgress?: boolean;
+  progress?: number;
+}
+
 export const portfolioData = {
   profile: {
     heroName: "The Heavy Ink",
@@ -69,8 +82,20 @@ export const portfolioData = {
       year: "2025",
       tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
       githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
+    },
+    {
+      id: "6",
+      title: "AI Agentic IDE Concept",
+      image: "",
+      description: "Next-generation web development environment powered by autonomous AI pair programming agents.",
+      fullDescription: "An experimental web IDE concept integrating multi-agent orchestration, real-time AST manipulations, and brutalist comic book UI aesthetics. Designed to revolutionize human-AI collaborative coding workflows.",
+      year: "2026",
+      tags: ["Next.js 15", "TypeScript", "AI SDK", "Tailwind CSS"],
+      githubUrl: "https://github.com/Saintfai",
+      inProgress: true,
+      progress: 75
     }
-  ],
+  ] as Project[],
   contacts: {
     email: "shevafairuz10@gmail.com",
     github: "@Saintfai",

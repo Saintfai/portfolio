@@ -64,12 +64,17 @@ export default function ProjectsSection() {
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <ComicCard>
-                  <div className="kicker">Issue #{index + 1}</div>
+                <ComicCard className={project.inProgress ? "card-in-progress" : ""}>
+                  <div className="kicker">
+                    {project.inProgress ? `Issue #${index + 1} // W.I.P` : `Issue #${index + 1}`}
+                  </div>
                   <div className={`comic-card-header ${themeColor}`}>
                     <h3 className="comic-card-title">{project.title}</h3>
                   </div>
                   <div className="comic-card-content">
+                    {project.inProgress && (
+                      <div className="coming-soon-stamp">COMING SOON</div>
+                    )}
                     {project.image ? (
                       <div className="heavy-border mb-4" style={{ width: "100%", height: "120px", overflow: "hidden" }}>
                         <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -80,6 +85,12 @@ export default function ProjectsSection() {
                       </div>
                     )}
                     <p className="project-card-desc">{project.description}</p>
+                    {project.inProgress && typeof project.progress === "number" && (
+                      <div className="comic-progress-container">
+                        <div className="comic-progress-bar" style={{ width: `${project.progress}%` }}></div>
+                        <span className="comic-progress-label">DEV PROGRESS: {project.progress}%</span>
+                      </div>
+                    )}
                     <div className="project-card-tags">
                       {project.tags.slice(0, 3).map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
@@ -110,7 +121,11 @@ export default function ProjectsSection() {
               const themeColor = selectedIdx !== -1 ? themeColors[selectedIdx % themeColors.length] : "bg-red";
               return (
                 <div className={`comic-modal-header ${themeColor}`}>
-                  <span className="comic-modal-kicker">PROJECT DOSSIER // {selectedProject.year}</span>
+                  <span className="comic-modal-kicker">
+                    {selectedProject.inProgress
+                      ? `PROJECT DOSSIER // WORK IN PROGRESS`
+                      : `PROJECT DOSSIER // ${selectedProject.year}`}
+                  </span>
                   <h2 className="comic-modal-title">{selectedProject.title}</h2>
                 </div>
               );
@@ -128,6 +143,17 @@ export default function ProjectsSection() {
               )}
               
               <div className="comic-modal-body">
+                {selectedProject.inProgress && typeof selectedProject.progress === "number" && (
+                  <div style={{ marginBottom: "1.5rem" }}>
+                    <h4 className="comic-modal-section-title">Production Status</h4>
+                    <div className="comic-progress-container" style={{ height: "28px" }}>
+                      <div className="comic-progress-bar" style={{ width: `${selectedProject.progress}%` }}></div>
+                      <span className="comic-progress-label" style={{ fontSize: "0.85rem" }}>
+                        STILL COOKING // {selectedProject.progress}% COMPLETED
+                      </span>
+                    </div>
+                  </div>
+                )}
                 <h4 className="comic-modal-section-title">Description</h4>
                 <p className="comic-modal-full-desc">{selectedProject.fullDescription}</p>
                 

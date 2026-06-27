@@ -537,6 +537,94 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 10;
 }
 
+/* ============================================
+   ON PROGRESS / SKETCH CARD STYLES
+   ============================================ */
+.comic-card.card-in-progress {
+  border: 4px dashed var(--color-pure-black);
+}
+
+.card-in-progress .comic-card-header {
+  opacity: 0.9;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%);
+  background-size: 6px 6px;
+}
+
+.coming-soon-stamp {
+  position: absolute;
+  top: 42%;
+  right: 15px;
+  transform: translateY(-50%) rotate(-12deg);
+  border: 3px solid var(--color-spiderman-red);
+  color: var(--color-spiderman-red);
+  padding: 4px 10px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 3px 3px 0px var(--color-spiderman-red);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.comic-progress-container {
+  width: 100%;
+  margin: 0.5rem 0 1rem 0;
+  border: 2px solid var(--color-pure-black);
+  background-color: #e8e8e8;
+  position: relative;
+  height: 22px;
+}
+
+.comic-progress-bar {
+  height: 100%;
+  background-color: var(--color-wolverine-yellow);
+  border-right: 2px solid var(--color-pure-black);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.15) 4px,
+    rgba(0, 0, 0, 0.15) 8px
+  );
+  transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.comic-progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--color-pure-black);
+  z-index: 2;
+}
+
+:root[data-theme='noir'] .coming-soon-stamp {
+  border-color: var(--color-wolverine-yellow);
+  color: var(--color-wolverine-yellow);
+  box-shadow: 3px 3px 0px var(--color-wolverine-yellow);
+  background-color: rgba(20, 20, 20, 0.92);
+}
+
+:root[data-theme='noir'] .comic-progress-container {
+  background-color: #222222;
+  border-color: var(--color-pure-white);
+}
+
+:root[data-theme='noir'] .comic-progress-bar {
+  background-color: var(--color-wolverine-yellow);
+  border-right-color: var(--color-pure-white);
+}
+
+:root[data-theme='noir'] .comic-progress-label {
+  color: var(--color-pure-white);
+}
+
 /* Inputs */
 .input-group {
   position: relative;
