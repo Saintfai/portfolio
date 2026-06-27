@@ -41,7 +41,9 @@ export const portfolioData = {
       fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
       year: "2026",
       tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
-      githubUrl: "https://github.com/Saintfai/Project-GastroLog"
+      githubUrl: "https://github.com/Saintfai/Project-GastroLog",
+      inProgress: true,
+      progress: 55
     },
     {
       id: "2",
@@ -82,18 +84,6 @@ export const portfolioData = {
       year: "2025",
       tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
       githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
-    },
-    {
-      id: "6",
-      title: "AI Agentic IDE Concept",
-      image: "",
-      description: "Next-generation web development environment powered by autonomous AI pair programming agents.",
-      fullDescription: "An experimental web IDE concept integrating multi-agent orchestration, real-time AST manipulations, and brutalist comic book UI aesthetics. Designed to revolutionize human-AI collaborative coding workflows.",
-      year: "2026",
-      tags: ["Next.js 15", "TypeScript", "AI SDK", "Tailwind CSS"],
-      githubUrl: "https://github.com/Saintfai",
-      inProgress: true,
-      progress: 75
     }
   ] as Project[],
   contacts: {

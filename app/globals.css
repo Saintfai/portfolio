@@ -540,9 +540,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================
    ON PROGRESS / SKETCH CARD STYLES
    ============================================ */
-.comic-card.card-in-progress {
-  border: 4px dashed var(--color-pure-black);
-}
 
 .card-in-progress .comic-card-header {
   opacity: 0.9;
