@@ -183,6 +183,8 @@ body {
   font-family: var(--font-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -274,6 +276,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
   transform-origin: center center;
   animation: spin-speed-lines 180s linear infinite;
+  image-rendering: auto;
+  will-change: transform;
 }
 
 .speed-lines > * {
@@ -369,6 +373,8 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-pure-black);
   z-index: -1;
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .hard-shadow:hover::after {
@@ -382,11 +388,17 @@ h1, h2, h3, h4, h5, h6 {
 .rotate-text {
   transform: rotate(-2deg);
   display: inline-block;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .rotate-text-alt {
   transform: rotate(2deg);
   display: inline-block;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .text-stroke {
@@ -467,6 +479,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   display: flex;
   flex-direction: column;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .projects-section .comic-card {
@@ -558,6 +572,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 900;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background-color: rgba(255, 255, 255, 0.92);
@@ -753,6 +770,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .comic-list li:hover {
@@ -761,6 +780,8 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 1rem;
   padding-right: 1rem;
   border: var(--border-heavy);
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 /* Page Layout specific classes to avoid inline styles */
@@ -1270,6 +1291,8 @@ h1, h2, h3, h4, h5, h6 {
   border: var(--border-heavy);
   padding: 24px;
   color: var(--color-pure-black);
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .newspaper-masthead {
@@ -1342,6 +1365,8 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-pure-white);
   margin-bottom: 1rem;
   transform: rotate(-1deg);
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
 }
 
 .newspaper-photo-container {
