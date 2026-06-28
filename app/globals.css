@@ -2615,10 +2615,13 @@ html.splash-seen .splash-overlay { display: none !important; }
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  will-change: opacity;
+  backface-visibility: hidden;
 }
 
 .splash-overlay.splash-hiding {
   animation: splash-fade-out 0.6s ease forwards;
+  pointer-events: none;
 }
 
 /* Center content box */
@@ -2686,31 +2689,43 @@ html.splash-seen .splash-overlay { display: none !important; }
    ============================================ */
 
 /* Hide everything when splash is active */
-body.splash-active .navbar { opacity: 0; transform: scale(0.8); }
+body.splash-active .navbar {
+  opacity: 0;
+  transform: scale(0.92);
+}
 body.splash-active .hero-section .bg-decorations,
-body.splash-active .hero-section .grid-container { opacity: 0; transform: scale(0.8); }
-body.splash-active .page-wrapper > *:not(.navbar):not(.hero-section) { opacity: 0; transform: scale(0.8); }
+body.splash-active .hero-section .grid-container {
+  opacity: 0;
+  transform: scale(0.92);
+}
+/* Below-fold sections: hide completely using visibility to prevent any rendering or animation overhead */
+body.splash-active .page-wrapper > *:not(.navbar):not(.hero-section) {
+  visibility: hidden;
+}
 
-/* Keyframes for reveals */
+/* Keyframes for hero-area reveals — subtle scale pop */
 @keyframes reveal-pop-up {
-  0%   { opacity: 0; transform: scale(0.8); }
-  70%  { opacity: 1; transform: scale(1.02); }
+  0%   { opacity: 0; transform: scale(0.92); }
   100% { opacity: 1; transform: scale(1); }
 }
 
 /* Trigger animations when splash is revealed */
 body.splash-revealed .navbar {
-  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s both;
+  will-change: opacity, transform;
+  animation: reveal-pop-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
 }
 
 body.splash-revealed .hero-section .bg-decorations {
-  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s both;
+  will-change: opacity, transform;
+  animation: reveal-pop-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
 }
 
 body.splash-revealed .hero-section .grid-container {
-  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s both;
+  will-change: opacity, transform;
+  animation: reveal-pop-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
 
+/* Restore visibility of below-fold sections immediately */
 body.splash-revealed .page-wrapper > *:not(.navbar):not(.hero-section) {
-  animation: reveal-pop-up 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s both;
+  visibility: visible;
 }

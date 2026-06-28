@@ -25,11 +25,11 @@ export default function SplashScreen() {
       document.body.classList.add("splash-revealed");
     }, 2200);
 
-    // Fully remove after animation completes
+    // Fully remove after animation completes (allow 1s for all reveal animations to finish)
     const removeTimer = setTimeout(() => {
       setVisible(false);
       sessionStorage.setItem("splash-shown", "true");
-    }, 2800);
+    }, 3200);
 
     return () => {
       clearTimeout(fadeTimer);
