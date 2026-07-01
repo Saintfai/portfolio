@@ -20,11 +20,10 @@ export const portfolioData = {
     University: "Politeknik Negeri Bandung",
     skills: ["Flutter", "React", "Next.js", "Figma"],
     roles: [
-      "Software Developer",
       "Mobile Developer",
       "System Analyst",
+      "UI/UX Designer",
       "Web Developer",
-      "Problem Solver",
     ],
     bio: [
       "I am a Computer Science student and Software Developer with a versatile interest in building and analyzing digital systems. My expertise spans Mobile Development (Flutter) and Web Development, where I focus on creating seamless, high-performance applications from the front to the backend.",
