@@ -42,7 +42,7 @@ export const portfolioData = {
       tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
       githubUrl: "https://github.com/Saintfai/Project-GastroLog",
       inProgress: true,
-      progress: 55
+      progress: 78
     },
     {
       id: "2",
