@@ -483,10 +483,6 @@ h1, h2, h3, h4, h5, h6 {
   backface-visibility: hidden;
 }
 
-.projects-section .comic-card {
-  height: 440px;
-}
-
 .comic-card-header {
   border-bottom: var(--border-heavy);
   padding: 0.5rem 1rem;

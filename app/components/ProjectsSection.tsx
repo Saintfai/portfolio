@@ -54,9 +54,12 @@ export default function ProjectsSection() {
           const themeColor = themeColors[index % themeColors.length];
           const shadowClass = shadowClasses[index % shadowClasses.length];
           const primaryTagClass = tagClasses[index % tagClasses.length];
+          
+          // Bento Logic: Pola 8-4-4-8
+          const spanClass = (index % 4 === 0 || index % 4 === 3) ? "col-8" : "col-4";
 
           return (
-            <div className="col-4" key={project.id}>
+            <div className={spanClass} key={project.id}>
               <ScrollReveal
                 animationClass="scroll-reveal-simple scroll-shadow-reveal"
                 className={`hard-shadow h-full ${shadowClass}`}
@@ -76,7 +79,7 @@ export default function ProjectsSection() {
                       <div className="coming-soon-stamp">COMING SOON</div>
                     )}
                     {project.image ? (
-                      <div className="heavy-border mb-4" style={{ width: "100%", height: "120px", overflow: "hidden" }}>
+                      <div className="heavy-border mb-4" style={{ width: "100%", height: "200px", overflow: "hidden" }}>
                         <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                       </div>
                     ) : (
