@@ -52,36 +52,34 @@ export default function ProjectsSection() {
         
         {projects.map((project, index) => {
           const primaryTagClass = tagClasses[index % tagClasses.length];
+          const isImageTop = index % 2 === 0;
 
           return (
-            <div className="col-12" key={project.id}>
+            <div className="col-4" key={project.id}>
               <ScrollReveal
                 animationClass="scroll-reveal-simple scroll-shadow-reveal"
-                className="hard-shadow"
+                className="hard-shadow h-full"
                 style={{ cursor: "pointer" }}
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <div className="card-document">
-                  <div className="card-document-image">
+                <div className={`card-uniform ${isImageTop ? 'card-image-top' : 'card-image-left'}`}>
+                  <div className="card-image">
                     {project.image ? (
                       <img src={project.image} alt={project.title} />
                     ) : (
                       <div className="project-image-placeholder" style={{ height: "100%" }}>
-                        <span className="comic-placeholder-text">NO COVER ART</span>
+                        <span className="comic-placeholder-text">NO ART</span>
                       </div>
                     )}
                   </div>
                   
-                  <div className="card-document-content">
-                    <div className="card-document-header">
-                      <h3 className="card-document-title">{project.title}</h3>
-                      <div className="kicker">
-                        {project.inProgress ? `W.I.P // Issue #${index + 1}` : `Issue #${index + 1}`}
-                      </div>
+                  <div className="card-content">
+                    <div className="kicker">
+                      {project.inProgress ? `W.I.P // #${index + 1}` : `Issue #${index + 1}`}
                     </div>
-                    
-                    <p className="card-document-desc">{project.description}</p>
+                    <h3 className="card-title">{project.title}</h3>
+                    <p className="card-desc">{project.description}</p>
                     
                     {project.inProgress && typeof project.progress === "number" && (
                       <div className="comic-progress-container">
@@ -90,13 +88,10 @@ export default function ProjectsSection() {
                       </div>
                     )}
                     
-                    <div className="card-document-footer">
-                      {project.tags.slice(0, 4).map((tech, idx) => (
+                    <div className="card-footer">
+                      {project.tags.slice(0, 3).map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
                       ))}
-                      {project.tags.length > 4 && (
-                        <span className="chip-ellipsis">...</span>
-                      )}
                     </div>
                   </div>
                 </div>
