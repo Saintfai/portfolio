@@ -54,12 +54,9 @@ export default function ProjectsSection() {
           const themeColor = themeColors[index % themeColors.length];
           const shadowClass = shadowClasses[index % shadowClasses.length];
           const primaryTagClass = tagClasses[index % tagClasses.length];
-          
-          // Bento Logic: Pola 8-4-4-8
-          const spanClass = (index % 4 === 0 || index % 4 === 3) ? "col-8" : "col-4";
 
           return (
-            <div className={spanClass} key={project.id}>
+            <div className="col-4" key={project.id}>
               <ScrollReveal
                 animationClass="scroll-reveal-simple scroll-shadow-reveal"
                 className={`hard-shadow h-full ${shadowClass}`}
@@ -78,22 +75,27 @@ export default function ProjectsSection() {
                     {project.inProgress && (
                       <div className="coming-soon-stamp">COMING SOON</div>
                     )}
-                    {project.image ? (
-                      <div className="heavy-border mb-4" style={{ width: "100%", height: "200px", overflow: "hidden" }}>
+                    
+                    {/* Gambar lebih jelas dengan ukuran proporsional */}
+                    <div className="heavy-border mb-4" style={{ width: "100%", height: "180px", overflow: "hidden" }}>
+                      {project.image ? (
                         <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      </div>
-                    ) : (
-                      <div className="project-image-placeholder mb-4">
-                        <span className="comic-placeholder-text">NO COVER ART</span>
-                      </div>
-                    )}
-                    <p className="project-card-desc">{project.description}</p>
+                      ) : (
+                        <div className="project-image-placeholder" style={{ height: "100%" }}>
+                          <span className="comic-placeholder-text">NO COVER ART</span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <p className="project-card-desc" style={{ height: "3em", marginBottom: "1rem" }}>{project.description}</p>
+                    
                     {project.inProgress && typeof project.progress === "number" && (
                       <div className="comic-progress-container">
                         <div className="comic-progress-bar" style={{ width: `${project.progress}%` }}></div>
-                        <span className="comic-progress-label">DEV PROGRESS: {project.progress}%</span>
+                        <span className="comic-progress-label">DEV: {project.progress}%</span>
                       </div>
                     )}
+                    
                     <div className="project-card-tags">
                       {project.tags.slice(0, 3).map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
