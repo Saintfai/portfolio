@@ -33,16 +33,14 @@ export const portfolioData = {
   },
   projects: [
     {
-      id: "1",
-      title: "GastroLog",
+      id: "5",
+      title: "Space Invader",
       image: "",
-      description: "A smart journal web application specifically designed for GERD and acid reflux sufferers.",
-      fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
-      year: "2026",
-      tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
-      githubUrl: "https://github.com/Saintfai/Project-GastroLog",
-      inProgress: true,
-      progress: 78
+      description: "A 2D arcade game where players control a spaceship to destroy incoming waves of alien enemies while managing resources and power-ups.",
+      fullDescription: "Space Invaders is a desktop-based 2D arcade game that features progressive wave scaling mechanics, multiple enemy difficulty profiles, ammunition constraints, structural health tracking, randomized power-up supply spawns, responsive collision bounding blocks, an interactive soundscape engine, and a file-persistent dynamic leaderboard system.",
+      year: "2025",
+      tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
+      githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
     },
     {
       id: "2",
@@ -75,14 +73,28 @@ export const portfolioData = {
       githubUrl: "https://github.com/Saintfai/Project-Aplikasi-Penandatanganan-Digital"
     },
     {
-      id: "5",
-      title: "Space Invader",
+      id: "1",
+      title: "GastroLog",
       image: "",
-      description: "A 2D arcade game where players control a spaceship to destroy incoming waves of alien enemies while managing resources and power-ups.",
-      fullDescription: "Space Invaders is a desktop-based 2D arcade game that features progressive wave scaling mechanics, multiple enemy difficulty profiles, ammunition constraints, structural health tracking, randomized power-up supply spawns, responsive collision bounding blocks, an interactive soundscape engine, and a file-persistent dynamic leaderboard system.",
-      year: "2025",
-      tags: ["C", "SDL3", "SDL3_ttf", "SDL3_mixer", "MinGw", "Make"],
-      githubUrl: "https://github.com/ihsan-ramadhan/space-invaders"
+      description: "A smart journal web application specifically designed for GERD and acid reflux sufferers.",
+      fullDescription: "GastroLog is a smart journal web application specifically designed for GERD (Gastroesophageal Reflux Disease) and acid reflux sufferers. It provides a comprehensive platform to track daily food and symptom intake, helping users understand their triggers and manage their condition more effectively. The app features an intuitive interface for logging meals, noting symptom severity, and reviewing historical data to identify patterns between food consumption and physical reactions.",
+      year: "2026",
+      tags: ["Nextjs", "Tailwind", "PostgreSql", "Prisma 5", "Typescript", "Shadcn UI"],
+      githubUrl: "https://github.com/Saintfai/Project-GastroLog",
+      inProgress: true,
+      progress: 78
+    },
+    {
+      id: "6",
+      title: "Plasma Farmacy",
+      image: "/PlasmaFarmacy.png",
+      description: "Plasma Farmasi is a web-based real-time queue app that shows patient call status on hospital TV screens, complete with a management dashboard for admins and counter staff.",
+      fullDescription: "Pharma Plasma is a digital solution for hospital queues that focuses on managing and making patient calls transparent in the pharmacy and clinic areas. This app solves the confusion of waiting in line by showing real-time queue data directly on TV screens (Plasma Monitors), so patients can keep track of their queue numbers without constantly asking the staff.",
+      year: "2026",
+      tags: ["React", "Supabase", "Tailwind"],
+      githubUrl: "",
+      inProgress: true,
+      progress: 25
     }
   ] as Project[],
   contacts: {
