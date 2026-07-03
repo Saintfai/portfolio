@@ -470,68 +470,81 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
-/* Cards */
-.comic-card {
-  border: var(--border-heavy);
-  background-color: var(--color-pure-white);
+/* --- NEW COMIC COVER CARD STYLE --- */
+.comic-cover-card {
   position: relative;
-  border-radius: 0;
-  height: 100%;
+  border: var(--border-heavy);
+  background-color: var(--color-pure-black);
+  height: 480px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   outline: 1px solid transparent;
   backface-visibility: hidden;
 }
 
-.comic-card-header {
-  border-bottom: var(--border-heavy);
-  padding: 0.5rem 1rem;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
+.comic-cover-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.comic-cover-card:hover .comic-cover-image {
+  transform: scale(1.05);
+}
+
+.comic-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+}
+
+.comic-cover-header {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
   color: var(--color-pure-white);
+}
+
+.comic-cover-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
   text-transform: uppercase;
-  height: 5.2rem;
-  display: flex;
-  align-items: center;
-}
-
-.comic-card-title {
   margin: 0;
-  font-size: 1.3rem;
-  line-height: 1.2;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-shadow: 3px 3px 0 var(--color-pure-black), -2px -2px 0 var(--color-spiderman-red);
 }
 
-.comic-card-header.bg-red { background-color: var(--color-spiderman-red); }
-.comic-card-header.bg-blue { background-color: var(--color-captain-blue); }
-.comic-card-header.bg-black { background-color: var(--color-pure-black); }
+.comic-cover-footer {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+  color: var(--color-pure-white);
+}
 
-.comic-card-content {
-  padding: 24px;
-  background-color: var(--color-pure-white);
-  flex-grow: 1;
+.comic-cover-tags {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 1rem;
 }
 
-.project-card-desc {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 3em;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+.comic-cover-tag {
+  background-color: var(--color-wolverine-yellow);
+  color: var(--color-pure-black);
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid var(--color-pure-black);
 }
 
-.project-card-tags {
-  margin-top: auto;
-}
 
 .kicker {
   position: absolute;
