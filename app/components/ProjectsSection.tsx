@@ -51,45 +51,61 @@ export default function ProjectsSection() {
         </div>
         
         {projects.map((project, index) => {
+          const themeColor = themeColors[index % themeColors.length];
+          const shadowClass = shadowClasses[index % shadowClasses.length];
           const primaryTagClass = tagClasses[index % tagClasses.length];
 
           return (
             <div className="col-4" key={project.id}>
               <ScrollReveal
                 animationClass="scroll-reveal-simple scroll-shadow-reveal"
-                className="hard-shadow h-full"
+                className={`hard-shadow h-full ${shadowClass}`}
                 style={{ cursor: "pointer" }}
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <div className="comic-cover-card">
-                  {project.image ? (
-                    <img src={project.image} alt={project.title} className="comic-cover-image" />
-                  ) : (
-                    <div className="project-image-placeholder" style={{ height: "100%" }}>
-                      <span className="comic-placeholder-text">NO COVER ART</span>
-                    </div>
-                  )}
-                  <div className="comic-cover-overlay"></div>
-                  
-                  <div className="comic-cover-header">
-                    <div className="kicker">
-                      {project.inProgress ? `W.I.P // Issue #${index + 1}` : `Issue #${index + 1}`}
-                    </div>
-                    <h3 className="comic-cover-title">{project.title}</h3>
+                <ComicCard className={project.inProgress ? "card-in-progress" : ""}>
+                  <div className="kicker">
+                    {project.inProgress ? `Issue #${index + 1} // W.I.P` : `Issue #${index + 1}`}
                   </div>
-                  
-                  <div className="comic-cover-footer">
+                  <div className={`comic-card-header ${themeColor}`}>
+                    <h3 className="comic-card-title">{project.title}</h3>
+                  </div>
+                  <div className="comic-card-content">
                     {project.inProgress && (
-                      <div className="coming-soon-stamp" style={{ position: "relative", top: "0", right: "0", marginBottom: "1rem" }}>COMING SOON</div>
+                      <div className="coming-soon-stamp">COMING SOON</div>
                     )}
-                    <div className="comic-cover-tags">
+                    
+                    {/* Gambar dengan ukuran lebih tinggi */}
+                    <div className="heavy-border mb-4" style={{ width: "100%", height: "240px", overflow: "hidden" }}>
+                      {project.image ? (
+                        <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                      ) : (
+                        <div className="project-image-placeholder" style={{ height: "100%" }}>
+                          <span className="comic-placeholder-text">NO COVER ART</span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    <p className="project-card-desc" style={{ marginBottom: "1rem" }}>{project.description}</p>
+                    
+                    {project.inProgress && typeof project.progress === "number" && (
+                      <div className="comic-progress-container">
+                        <div className="comic-progress-bar" style={{ width: `${project.progress}%` }}></div>
+                        <span className="comic-progress-label">DEV: {project.progress}%</span>
+                      </div>
+                    )}
+                    
+                    <div className="project-card-tags">
                       {project.tags.slice(0, 3).map((tech, idx) => (
-                        <span className={`comic-cover-tag ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
+                        <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
                       ))}
+                      {project.tags.length > 3 && (
+                        <span className="chip-ellipsis">...</span>
+                      )}
                     </div>
                   </div>
-                </div>
+                </ComicCard>
               </ScrollReveal>
             </div>
           );
