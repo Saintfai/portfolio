@@ -51,43 +51,37 @@ export default function ProjectsSection() {
         </div>
         
         {projects.map((project, index) => {
-          const themeColor = themeColors[index % themeColors.length];
-          const shadowClass = shadowClasses[index % shadowClasses.length];
           const primaryTagClass = tagClasses[index % tagClasses.length];
 
           return (
-            <div className="col-4" key={project.id}>
+            <div className="col-12" key={project.id}>
               <ScrollReveal
                 animationClass="scroll-reveal-simple scroll-shadow-reveal"
-                className={`hard-shadow h-full ${shadowClass}`}
+                className="hard-shadow"
                 style={{ cursor: "pointer" }}
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <ComicCard className={project.inProgress ? "card-in-progress" : ""}>
-                  <div className="kicker">
-                    {project.inProgress ? `Issue #${index + 1} // W.I.P` : `Issue #${index + 1}`}
-                  </div>
-                  <div className={`comic-card-header ${themeColor}`}>
-                    <h3 className="comic-card-title">{project.title}</h3>
-                  </div>
-                  <div className="comic-card-content">
-                    {project.inProgress && (
-                      <div className="coming-soon-stamp">COMING SOON</div>
+                <div className="card-document">
+                  <div className="card-document-image">
+                    {project.image ? (
+                      <img src={project.image} alt={project.title} />
+                    ) : (
+                      <div className="project-image-placeholder" style={{ height: "100%" }}>
+                        <span className="comic-placeholder-text">NO COVER ART</span>
+                      </div>
                     )}
-                    
-                    {/* Gambar dengan ukuran lebih tinggi */}
-                    <div className="heavy-border mb-4" style={{ width: "100%", height: "240px", overflow: "hidden" }}>
-                      {project.image ? (
-                        <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      ) : (
-                        <div className="project-image-placeholder" style={{ height: "100%" }}>
-                          <span className="comic-placeholder-text">NO COVER ART</span>
-                        </div>
-                      )}
+                  </div>
+                  
+                  <div className="card-document-content">
+                    <div className="card-document-header">
+                      <h3 className="card-document-title">{project.title}</h3>
+                      <div className="kicker">
+                        {project.inProgress ? `W.I.P // Issue #${index + 1}` : `Issue #${index + 1}`}
+                      </div>
                     </div>
                     
-                    <p className="project-card-desc" style={{ marginBottom: "1rem" }}>{project.description}</p>
+                    <p className="card-document-desc">{project.description}</p>
                     
                     {project.inProgress && typeof project.progress === "number" && (
                       <div className="comic-progress-container">
@@ -96,16 +90,16 @@ export default function ProjectsSection() {
                       </div>
                     )}
                     
-                    <div className="project-card-tags">
-                      {project.tags.slice(0, 3).map((tech, idx) => (
+                    <div className="card-document-footer">
+                      {project.tags.slice(0, 4).map((tech, idx) => (
                         <span className={`chip ${idx === 0 ? primaryTagClass : ""}`} key={idx}>{tech}</span>
                       ))}
-                      {project.tags.length > 3 && (
+                      {project.tags.length > 4 && (
                         <span className="chip-ellipsis">...</span>
                       )}
                     </div>
                   </div>
-                </ComicCard>
+                </div>
               </ScrollReveal>
             </div>
           );
