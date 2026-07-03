@@ -547,9 +547,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .kicker {
-  position: absolute;
-  top: -12px;
-  left: -12px;
+  display: inline-block;
   background-color: var(--color-wolverine-yellow);
   border: 2px solid var(--color-pure-black);
   padding: 4px 8px;
@@ -557,7 +555,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
-  z-index: 10;
+  margin-bottom: 12px;
 }
 
 /* ============================================
@@ -1984,8 +1982,24 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-pure-white);
   height: 480px; /* Tinggi seragam untuk semua kartu */
   display: flex;
-  overflow: hidden;
+  overflow: visible; /* Diubah agar elemen .kicker bisa menonjol keluar */
   position: relative;
+  margin-top: 20px; /* Ruang untuk label */
+}
+
+.kicker {
+  position: absolute;
+  top: -24px;
+  left: -8px;
+  background-color: var(--color-wolverine-yellow);
+  border: 2px solid var(--color-pure-black);
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
 /* Pola Gambar di Atas */
@@ -2797,8 +2811,24 @@ html.splash-seen .splash-overlay { display: none !important; }
   background-color: var(--color-pure-white);
   height: 480px; /* Tinggi seragam untuk semua kartu */
   display: flex;
-  overflow: hidden;
+  overflow: visible; /* Diubah agar elemen .kicker bisa menonjol keluar */
   position: relative;
+  margin-top: 20px; /* Ruang untuk label */
+}
+
+.kicker {
+  position: absolute;
+  top: -24px;
+  left: -8px;
+  background-color: var(--color-wolverine-yellow);
+  border: 2px solid var(--color-pure-black);
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 2px 2px 0 var(--color-pure-black);
 }
 
 /* Pola Gambar di Atas */

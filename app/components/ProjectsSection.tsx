@@ -51,8 +51,18 @@ export default function ProjectsSection() {
         </div>
         
         {projects.map((project, index) => {
-          const primaryTagClass = tagClasses[index % tagClasses.length];
-          const isImageTop = index % 2 === 0;
+          const primaryTagClass = tagClasses[index % themeColors.length];
+          const [isPopping, setIsPopping] = useState(false);
+          const [currentAction, setCurrentAction] = useState("");
+          const COMIC_ACTIONS = ["ZAP!", "WHAM!", "BOOM!", "POW!", "BAM!"];
+
+          const handleMouseEnter = () => {
+            if (!isPopping) {
+              setCurrentAction(COMIC_ACTIONS[Math.floor(Math.random() * COMIC_ACTIONS.length)]);
+              setIsPopping(true);
+              setTimeout(() => setIsPopping(false), 700);
+            }
+          };
 
           return (
             <div className="col-4" key={project.id}>
@@ -63,7 +73,11 @@ export default function ProjectsSection() {
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <div className={`card-uniform ${isImageTop ? 'card-image-top' : 'card-image-left'}`}>
+                <div 
+                  className={`card-uniform card-image-top ${isPopping ? 'show-action' : ''}`}
+                  data-comic-action={currentAction}
+                  onMouseEnter={handleMouseEnter}
+                >
                   <div className="card-image">
                     {project.image ? (
                       <img src={project.image} alt={project.title} />
