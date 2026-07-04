@@ -129,7 +129,6 @@ export default function ContactSection() {
         <div className="col-6">
           <ScrollReveal
             animationClass="scroll-reveal-simple scroll-shadow-reveal"
-            className="hard-shadow hard-shadow-tertiary"
           >
             <form onSubmit={handleSubmit} className="blueprint-card">
               <div className="blueprint-input-group">
