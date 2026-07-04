@@ -131,26 +131,26 @@ export default function ContactSection() {
             animationClass="scroll-reveal-simple scroll-shadow-reveal"
             className="hard-shadow hard-shadow-tertiary"
           >
-            <form onSubmit={handleSubmit} className="comic-card contact-form-card">
-              <div className="input-group">
-                <label className="comic-label" htmlFor="name">Your Name</label>
-                <input type="text" id="name" name="name" className="comic-input" placeholder="Peter Parker" required />
+            <form onSubmit={handleSubmit} className="blueprint-card">
+              <div className="blueprint-input-group">
+                <label className="blueprint-label" htmlFor="name">Target (Name)</label>
+                <input type="text" id="name" name="name" className="blueprint-input" placeholder="Peter Parker" required />
               </div>
-              <div className="input-group">
-                <label className="comic-label" htmlFor="email">Your Email</label>
-                <input type="email" id="email" name="email" className="comic-input" placeholder="spider@dailybugle.com" required />
+              <div className="blueprint-input-group">
+                <label className="blueprint-label" htmlFor="email">Frequency (Email)</label>
+                <input type="email" id="email" name="email" className="blueprint-input" placeholder="spider@dailybugle.com" required />
               </div>
-              <div className="input-group">
-                <label className="comic-label" htmlFor="message">Message</label>
-                <textarea id="message" name="message" className="comic-input" rows={4} placeholder="We need your help!" required></textarea>
+              <div className="blueprint-input-group">
+                <label className="blueprint-label" htmlFor="message">Payload (Message)</label>
+                <textarea id="message" name="message" className="blueprint-input" rows={4} placeholder="We need your help!" required></textarea>
               </div>
               <div className="submit-btn-container">
                 <button 
                   type="submit" 
-                  className="btn btn-primary w-full"
+                  className="blueprint-btn"
                   disabled={status === "loading"}
                 >
-                  {status === "loading" ? "Transmitting..." : "Transmit Message"}
+                  {status === "loading" ? "Deploying..." : "Thwip! (Deploy Web)"}
                 </button>
               </div>
               {result && (
