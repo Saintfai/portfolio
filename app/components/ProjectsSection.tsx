@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import ComicCard from "./ComicCard";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
+import ComicCard from "./ComicCard";
 
 export default function ProjectsSection() {
   const { projects } = portfolioData;
@@ -52,17 +52,6 @@ export default function ProjectsSection() {
         
         {projects.map((project, index) => {
           const primaryTagClass = tagClasses[index % themeColors.length];
-          const [isPopping, setIsPopping] = useState(false);
-          const [currentAction, setCurrentAction] = useState("");
-          const COMIC_ACTIONS = ["ZAP!", "WHAM!", "BOOM!", "POW!", "BAM!"];
-
-          const handleMouseEnter = () => {
-            if (!isPopping) {
-              setCurrentAction(COMIC_ACTIONS[Math.floor(Math.random() * COMIC_ACTIONS.length)]);
-              setIsPopping(true);
-              setTimeout(() => setIsPopping(false), 700);
-            }
-          };
 
           return (
             <div className="col-4" key={project.id}>
@@ -73,11 +62,7 @@ export default function ProjectsSection() {
                 onClick={() => setSelectedProject(project)}
                 delay={index * 100}
               >
-                <div 
-                  className={`card-uniform card-image-top ${isPopping ? 'show-action' : ''}`}
-                  data-comic-action={currentAction}
-                  onMouseEnter={handleMouseEnter}
-                >
+                <ComicCard className="card-uniform card-image-top">
                   <div className="card-image">
                     {project.image ? (
                       <img src={project.image} alt={project.title} />
@@ -108,7 +93,7 @@ export default function ProjectsSection() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </ComicCard>
               </ScrollReveal>
             </div>
           );
