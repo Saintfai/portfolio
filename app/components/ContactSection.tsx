@@ -130,48 +130,31 @@ export default function ContactSection() {
           <ScrollReveal
             animationClass="scroll-reveal-simple scroll-shadow-reveal"
           >
-            <form onSubmit={handleSubmit} className="spider-bot-card">
-              <div className="spider-bot-header">
-                <div className="spider-bot-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                  <div className="spider-bot-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="spider-bot-title">Send an Email</h3>
-                <p className="spider-bot-subtitle">Delivered securely by Spider-Bot 🕷️</p>
+            <form onSubmit={handleSubmit} className="speech-bubble-card">
+              <div className="speech-bubble-header">
+                <h3 className="speech-bubble-title">What's on your mind?</h3>
+                <p className="speech-bubble-subtitle">Shoot me a direct message!</p>
               </div>
 
-              <div className="spider-bot-input-group">
-                <label className="spider-bot-label" htmlFor="name">Your Name</label>
-                <input type="text" id="name" name="name" className="spider-bot-input" placeholder="Peter Parker" required />
+              <div className="speech-bubble-input-group">
+                <label className="speech-bubble-label" htmlFor="name">Your Name</label>
+                <input type="text" id="name" name="name" className="speech-bubble-input" placeholder="Peter Parker" required />
               </div>
-              <div className="spider-bot-input-group">
-                <label className="spider-bot-label" htmlFor="email">Your Email Address</label>
-                <input type="email" id="email" name="email" className="spider-bot-input" placeholder="peter@example.com" required />
+              <div className="speech-bubble-input-group">
+                <label className="speech-bubble-label" htmlFor="email">Your Email</label>
+                <input type="email" id="email" name="email" className="speech-bubble-input" placeholder="peter@example.com" required />
               </div>
-              <div className="spider-bot-input-group">
-                <label className="spider-bot-label" htmlFor="message">How can I help you?</label>
-                <textarea id="message" name="message" className="spider-bot-input" rows={4} placeholder="Write your message here..." required></textarea>
+              <div className="speech-bubble-input-group">
+                <label className="speech-bubble-label" htmlFor="message">Your Message</label>
+                <textarea id="message" name="message" className="speech-bubble-input" rows={4} placeholder="Write your message here..." required></textarea>
               </div>
               <div className="submit-btn-container">
                 <button 
                   type="submit" 
-                  className="spider-bot-btn"
+                  className="speech-bubble-btn"
                   disabled={status === "loading"}
                 >
-                  <span className="btn-text">{status === "loading" ? "Dispatching..." : "Send via Spider-Bot"}</span>
-                  {status !== "loading" && (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="spider-bot-btn-icon">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                  )}
+                  <span className="btn-text">{status === "loading" ? "SENDING..." : "SAY IT!"}</span>
                 </button>
               </div>
               {result && (
