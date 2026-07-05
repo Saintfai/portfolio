@@ -130,30 +130,48 @@ export default function ContactSection() {
           <ScrollReveal
             animationClass="scroll-reveal-simple scroll-shadow-reveal"
           >
-            <form onSubmit={handleSubmit} className="bugle-card">
-              <div className="bugle-header">
-                <h3 className="bugle-masthead">The Daily Bugle</h3>
-                <div className="bugle-subhead">OFFICIAL TIP LINE FORM</div>
+            <form onSubmit={handleSubmit} className="spider-bot-card">
+              <div className="spider-bot-header">
+                <div className="spider-bot-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <div className="spider-bot-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="spider-bot-title">Send an Email</h3>
+                <p className="spider-bot-subtitle">Delivered securely by Spider-Bot 🕷️</p>
               </div>
-              <div className="bugle-input-group">
-                <label className="bugle-label" htmlFor="name">Informant Name (Optional)</label>
-                <input type="text" id="name" name="name" className="bugle-input" placeholder="e.g. Friendly Neighborhood..." required />
+
+              <div className="spider-bot-input-group">
+                <label className="spider-bot-label" htmlFor="name">Your Name</label>
+                <input type="text" id="name" name="name" className="spider-bot-input" placeholder="Peter Parker" required />
               </div>
-              <div className="bugle-input-group">
-                <label className="bugle-label" htmlFor="email">Contact Info (Secure)</label>
-                <input type="email" id="email" name="email" className="bugle-input" placeholder="spider@dailybugle.com" required />
+              <div className="spider-bot-input-group">
+                <label className="spider-bot-label" htmlFor="email">Your Email Address</label>
+                <input type="email" id="email" name="email" className="spider-bot-input" placeholder="peter@example.com" required />
               </div>
-              <div className="bugle-input-group">
-                <label className="bugle-label" htmlFor="message">The Scoop (Details)</label>
-                <textarea id="message" name="message" className="bugle-input" rows={3} placeholder="I saw him swinging from the Chrysler building!" required></textarea>
+              <div className="spider-bot-input-group">
+                <label className="spider-bot-label" htmlFor="message">How can I help you?</label>
+                <textarea id="message" name="message" className="spider-bot-input" rows={4} placeholder="Write your message here..." required></textarea>
               </div>
-              <div className="submit-btn-container text-right">
+              <div className="submit-btn-container">
                 <button 
                   type="submit" 
-                  className="bugle-submit-stamp"
+                  className="spider-bot-btn"
                   disabled={status === "loading"}
                 >
-                  {status === "loading" ? "STAMPING..." : "SUBMIT TIP"}
+                  <span className="btn-text">{status === "loading" ? "Dispatching..." : "Send via Spider-Bot"}</span>
+                  {status !== "loading" && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="spider-bot-btn-icon">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                  )}
                 </button>
               </div>
               {result && (
