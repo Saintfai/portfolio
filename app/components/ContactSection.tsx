@@ -130,26 +130,30 @@ export default function ContactSection() {
           <ScrollReveal
             animationClass="scroll-reveal-simple scroll-shadow-reveal"
           >
-            <form onSubmit={handleSubmit} className="blueprint-card">
-              <div className="blueprint-input-group">
-                <label className="blueprint-label" htmlFor="name">Target (Name)</label>
-                <input type="text" id="name" name="name" className="blueprint-input" placeholder="Peter Parker" required />
+            <form onSubmit={handleSubmit} className="bugle-card">
+              <div className="bugle-header">
+                <h3 className="bugle-masthead">The Daily Bugle</h3>
+                <div className="bugle-subhead">OFFICIAL TIP LINE FORM</div>
               </div>
-              <div className="blueprint-input-group">
-                <label className="blueprint-label" htmlFor="email">Frequency (Email)</label>
-                <input type="email" id="email" name="email" className="blueprint-input" placeholder="spider@dailybugle.com" required />
+              <div className="bugle-input-group">
+                <label className="bugle-label" htmlFor="name">Informant Name (Optional)</label>
+                <input type="text" id="name" name="name" className="bugle-input" placeholder="e.g. Friendly Neighborhood..." required />
               </div>
-              <div className="blueprint-input-group">
-                <label className="blueprint-label" htmlFor="message">Payload (Message)</label>
-                <textarea id="message" name="message" className="blueprint-input" rows={4} placeholder="We need your help!" required></textarea>
+              <div className="bugle-input-group">
+                <label className="bugle-label" htmlFor="email">Contact Info (Secure)</label>
+                <input type="email" id="email" name="email" className="bugle-input" placeholder="spider@dailybugle.com" required />
               </div>
-              <div className="submit-btn-container">
+              <div className="bugle-input-group">
+                <label className="bugle-label" htmlFor="message">The Scoop (Details)</label>
+                <textarea id="message" name="message" className="bugle-input" rows={3} placeholder="I saw him swinging from the Chrysler building!" required></textarea>
+              </div>
+              <div className="submit-btn-container text-right">
                 <button 
                   type="submit" 
-                  className="blueprint-btn"
+                  className="bugle-submit-stamp"
                   disabled={status === "loading"}
                 >
-                  {status === "loading" ? "Deploying..." : "Thwip! (Deploy Web)"}
+                  {status === "loading" ? "STAMPING..." : "SUBMIT TIP"}
                 </button>
               </div>
               {result && (
