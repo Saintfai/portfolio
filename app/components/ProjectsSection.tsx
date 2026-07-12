@@ -147,7 +147,7 @@ export default function ProjectsSection() {
                         <h4 className="comic-modal-section-title">Production Status</h4>
                         <div className="comic-progress-container" style={{ height: "28px" }}>
                           <div className="comic-progress-bar" style={{ width: `${selectedProject.progress}%` }}></div>
-                          <span className="comic-progress-label" style={{ fontSize: "0.85rem" }}>
+                          <span className="comic-progress-label" style={{ fontSize: "1rem" }}>
                             STILL COOKING // {selectedProject.progress}% COMPLETED
                           </span>
                         </div>

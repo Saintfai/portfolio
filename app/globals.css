@@ -2216,7 +2216,7 @@ h1, h2, h3, h4, h5, h6 {
 .comic-modal-image-container {
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 400px;
+  max-height: 300px;
   background-color: var(--color-pure-black);
   overflow: hidden;
   position: relative;
@@ -2231,7 +2231,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-placeholder {
   width: 100%;
-  flex-grow: 1;
+  aspect-ratio: 16 / 9;
+  max-height: 300px;
   background-color: var(--color-wolverine-yellow);
   background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 2px, transparent 2.5px);
   background-size: 8px 8px;
@@ -2242,7 +2243,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-section-title {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: var(--color-captain-blue);
   border-bottom: 2px solid var(--color-pure-black);
   padding-bottom: 2px;
@@ -2263,8 +2264,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-full-desc {
   font-family: var(--font-body);
-  line-height: 1.45;
-  font-size: 0.95rem;
+  line-height: 1.6;
+  font-size: 1.15rem;
 }
 
 .comic-modal-tags {
@@ -2281,9 +2282,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .comic-modal-image-container {
+  .comic-modal-image-container,
+  .comic-modal-placeholder {
     aspect-ratio: 4 / 3;
-    max-height: 300px;
+    max-height: 250px;
   }
 }
 
