@@ -2216,17 +2216,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-image-container {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 300px;
   background-color: var(--color-pure-black);
-  overflow: hidden;
   position: relative;
 }
 
 .comic-modal-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -2283,10 +2279,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .comic-modal-image-container,
   .comic-modal-placeholder {
-    aspect-ratio: 16 / 9;
-    max-height: 200px;
+    aspect-ratio: 4 / 3;
+    max-height: 250px;
   }
   
   .comic-modal-title {
