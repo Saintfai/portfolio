@@ -108,70 +108,78 @@ export default function ProjectsSection() {
               &times;
             </button>
             
-            {/* Find theme class based on selected index */}
-            {(() => {
-              const selectedIdx = projects.findIndex(p => p.id === selectedProject.id);
-              const themeColor = selectedIdx !== -1 ? themeColors[selectedIdx % themeColors.length] : "bg-red";
-              return (
-                <div className={`comic-modal-header ${themeColor}`}>
-                  <span className="comic-modal-kicker">
-                    {selectedProject.inProgress
-                      ? `PROJECT DOSSIER // WORK IN PROGRESS`
-                      : `PROJECT DOSSIER // ${selectedProject.year}`}
-                  </span>
-                  <h2 className="comic-modal-title">{selectedProject.title}</h2>
-                </div>
-              );
-            })()}
-
-            <div className="comic-modal-content">
-              {selectedProject.image ? (
-                <div className="comic-modal-image-container">
-                  <img src={selectedProject.image} alt={selectedProject.title} className="comic-modal-image" />
-                </div>
-              ) : (
-                <div className="comic-modal-placeholder">
-                  <span className="comic-placeholder-text">NO COVER ART</span>
-                </div>
-              )}
-              
-              <div className="comic-modal-body">
-                {selectedProject.inProgress && typeof selectedProject.progress === "number" && (
-                  <div style={{ marginBottom: "1.5rem" }}>
-                    <h4 className="comic-modal-section-title">Production Status</h4>
-                    <div className="comic-progress-container" style={{ height: "28px" }}>
-                      <div className="comic-progress-bar" style={{ width: `${selectedProject.progress}%` }}></div>
-                      <span className="comic-progress-label" style={{ fontSize: "0.85rem" }}>
-                        STILL COOKING // {selectedProject.progress}% COMPLETED
-                      </span>
-                    </div>
+            <div className="comic-modal-layout">
+              {/* Left Column: Image / Cover Art */}
+              <div className="comic-modal-left">
+                {selectedProject.image ? (
+                  <div className="comic-modal-image-container">
+                    <img src={selectedProject.image} alt={selectedProject.title} className="comic-modal-image" />
+                  </div>
+                ) : (
+                  <div className="comic-modal-placeholder">
+                    <span className="comic-placeholder-text">NO COVER ART</span>
                   </div>
                 )}
-                <h4 className="comic-modal-section-title">Description</h4>
-                <p className="comic-modal-full-desc">{selectedProject.fullDescription}</p>
-                
-                <h4 className="comic-modal-section-title">Equipped Tech Stack</h4>
-                <div className="comic-modal-tags">
-                  {selectedProject.tags.map((tag, idx) => (
-                    <span key={idx} className="chip info">{tag}</span>
-                  ))}
+              </div>
+
+              {/* Right Column: Details */}
+              <div className="comic-modal-right">
+                {/* Find theme class based on selected index */}
+                {(() => {
+                  const selectedIdx = projects.findIndex(p => p.id === selectedProject.id);
+                  const themeColor = selectedIdx !== -1 ? themeColors[selectedIdx % themeColors.length] : "bg-red";
+                  return (
+                    <div className={`comic-modal-header ${themeColor}`}>
+                      <span className="comic-modal-kicker">
+                        {selectedProject.inProgress
+                          ? `PROJECT DOSSIER // WORK IN PROGRESS`
+                          : `PROJECT DOSSIER // ${selectedProject.year}`}
+                      </span>
+                      <h2 className="comic-modal-title">{selectedProject.title}</h2>
+                    </div>
+                  );
+                })()}
+
+                <div className="comic-modal-content">
+                  <div className="comic-modal-body">
+                    {selectedProject.inProgress && typeof selectedProject.progress === "number" && (
+                      <div style={{ marginBottom: "1.5rem" }}>
+                        <h4 className="comic-modal-section-title">Production Status</h4>
+                        <div className="comic-progress-container" style={{ height: "28px" }}>
+                          <div className="comic-progress-bar" style={{ width: `${selectedProject.progress}%` }}></div>
+                          <span className="comic-progress-label" style={{ fontSize: "0.85rem" }}>
+                            STILL COOKING // {selectedProject.progress}% COMPLETED
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    <h4 className="comic-modal-section-title">Description</h4>
+                    <p className="comic-modal-full-desc">{selectedProject.fullDescription}</p>
+                    
+                    <h4 className="comic-modal-section-title">Equipped Tech Stack</h4>
+                    <div className="comic-modal-tags">
+                      {selectedProject.tags.map((tag, idx) => (
+                        <span key={idx} className="chip info">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
+                
+                {selectedProject.githubUrl && (
+                  <div className="comic-modal-footer">
+                    <a 
+                      href={selectedProject.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="btn btn-primary"
+                      style={{ width: "100%", display: "block", textAlign: "center" }}
+                    >
+                      Access Files on GitHub
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
-            
-            {selectedProject.githubUrl && (
-              <div className="comic-modal-footer">
-                <a 
-                  href={selectedProject.githubUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn btn-primary"
-                  style={{ width: "100%", display: "block", textAlign: "center" }}
-                >
-                  Access Files on GitHub
-                </a>
-              </div>
-            )}
           </div>
         </div>,
         document.body

@@ -2084,8 +2084,8 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-pure-white) !important;
   color: var(--color-pure-black) !important;
   border: 4px solid var(--color-pure-black);
-  max-width: 500px;
-  width: 100%;
+  max-width: 900px;
+  width: 95%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2172,6 +2172,43 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 2px 2px 0 var(--color-spiderman-red);
 }
 
+/* --- DOUBLE PAGE SPREAD LAYOUT --- */
+.comic-modal-layout {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
+}
+
+.comic-modal-left {
+  width: 45%;
+  border-right: 4px solid var(--color-pure-black);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-pure-black);
+  position: relative;
+}
+
+.comic-modal-right {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-pure-white);
+  position: relative;
+}
+
+/* Add a comic book crease shadow in the middle */
+.comic-modal-layout::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 45%;
+  width: 20px;
+  background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
 .comic-modal-content {
   padding: 12px 16px;
   background-color: var(--color-pure-white) !important;
@@ -2186,11 +2223,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-image-container {
   width: 100%;
-  height: 150px;
-  border: 2px solid var(--color-pure-black);
+  flex-grow: 1;
   background-color: var(--color-pure-black);
   overflow: hidden;
-  margin-bottom: 1rem;
+  position: relative;
 }
 
 .comic-modal-image {
@@ -2202,15 +2238,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-placeholder {
   width: 100%;
-  height: 150px;
-  border: 2px solid var(--color-pure-black);
+  flex-grow: 1;
   background-color: var(--color-wolverine-yellow);
   background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 2px, transparent 2.5px);
   background-size: 8px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
 }
 
 .comic-modal-section-title {
@@ -2248,8 +2282,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-footer {
   border-top: 4px solid var(--color-pure-black);
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   background-color: var(--color-pure-white);
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .comic-modal-layout {
+    flex-direction: column;
+  }
+  .comic-modal-left {
+    width: 100%;
+    border-right: none;
+    border-bottom: 4px solid var(--color-pure-black);
+    min-height: 250px;
+  }
+  .comic-modal-right {
+    width: 100%;
+  }
+  .comic-modal-layout::after {
+    display: none;
+  }
 }
 
 @keyframes fadeIn {
