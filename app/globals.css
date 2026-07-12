@@ -2284,8 +2284,38 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .comic-modal-image-container,
   .comic-modal-placeholder {
-    aspect-ratio: 4 / 3;
-    max-height: 250px;
+    aspect-ratio: 16 / 9;
+    max-height: 200px;
+  }
+  
+  .comic-modal-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .comic-modal-section-title {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+  
+  .comic-modal-full-desc {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .comic-modal-card {
+    margin: 10px auto;
+  }
+  
+  .comic-modal-overlay {
+    padding: 30px 10px 20px;
+  }
+  
+  .comic-modal-close {
+    width: 34px;
+    height: 34px;
+    font-size: 1.2rem;
+    top: -10px;
+    right: -10px;
   }
 }
 
