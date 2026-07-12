@@ -94,7 +94,7 @@ export const portfolioData = {
       tags: ["React", "Supabase", "Tailwind"],
       githubUrl: "",
       inProgress: true,
-      progress: 25
+      progress: 86
     }
   ] as Project[],
   contacts: {
