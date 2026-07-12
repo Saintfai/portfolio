@@ -2175,13 +2175,12 @@ h1, h2, h3, h4, h5, h6 {
 /* --- DOUBLE PAGE SPREAD LAYOUT --- */
 .comic-modal-layout {
   display: flex;
-  flex-direction: row;
-  min-height: 500px;
+  flex-direction: column;
 }
 
 .comic-modal-left {
-  width: 45%;
-  border-right: 4px solid var(--color-pure-black);
+  width: 100%;
+  border-bottom: 4px solid var(--color-pure-black);
   display: flex;
   flex-direction: column;
   background-color: var(--color-pure-black);
@@ -2189,7 +2188,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .comic-modal-right {
-  width: 55%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--color-pure-white);
@@ -2197,16 +2196,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Add a comic book crease shadow in the middle */
+/* Comic book crease shadow - disabled for landscape layout */
 .comic-modal-layout::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 45%;
-  width: 20px;
-  background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
-  pointer-events: none;
-  z-index: 10;
+  display: none;
 }
 
 .comic-modal-content {
@@ -2223,7 +2215,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .comic-modal-image-container {
   width: 100%;
-  flex-grow: 1;
+  aspect-ratio: 16 / 9;
+  max-height: 400px;
   background-color: var(--color-pure-black);
   overflow: hidden;
   position: relative;
@@ -2232,7 +2225,7 @@ h1, h2, h3, h4, h5, h6 {
 .comic-modal-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
@@ -2288,20 +2281,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  .comic-modal-layout {
-    flex-direction: column;
-  }
-  .comic-modal-left {
-    width: 100%;
-    border-right: none;
-    border-bottom: 4px solid var(--color-pure-black);
-    min-height: 250px;
-  }
-  .comic-modal-right {
-    width: 100%;
-  }
-  .comic-modal-layout::after {
-    display: none;
+  .comic-modal-image-container {
+    aspect-ratio: 4 / 3;
+    max-height: 300px;
   }
 }
 
