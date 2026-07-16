@@ -1,46 +1,8 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
 
 export default function ContactSection() {
   const { contacts } = portfolioData;
-  const [result, setResult] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formElement = e.currentTarget;
-    setStatus("loading");
-    setResult("Transmitting message to someone who can help...");
-
-    const formData = new FormData(formElement);
-    formData.append("access_key", "6ea507dc-e643-4b49-8d13-c4073f3ad79f");
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setStatus("success");
-        setResult("Message transmitted successfully!");
-        formElement.reset();
-      } else {
-        console.log("Error", data);
-        setStatus("error");
-        setResult(data.message || "Transmission failed.");
-      }
-    } catch (error) {
-      console.error("Error submitting form", error);
-      setStatus("error");
-      setResult("Transmission failed due to network error.");
-    }
-  };
 
   return (
     <ScrollReveal 
@@ -67,15 +29,16 @@ export default function ContactSection() {
           TO BE CONTINUED...
         </div>
       </div>
-      <div className="grid-container">
-        <ScrollReveal className="col-6" animationClass="scroll-reveal-simple">
-          <h2 className="rotate-text contact-title">
+      
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '4rem 1rem', textAlign: 'center', position: 'relative', zIndex: 10 }}>
+        <ScrollReveal animationClass="scroll-reveal-simple" style={{ maxWidth: '600px' }}>
+          <h2 className="rotate-text contact-title" style={{ margin: '0 auto 1.5rem auto' }}>
             Send a<br/><span className="contact-highlight">Signal</span>
           </h2>
-          <p className="contact-description">
-            Need a hero for your next project? Fill out the form or send a message via email.
+          <p className="contact-description" style={{ margin: '0 auto 2.5rem auto' }}>
+            Need a hero for your next project? Connect with me on my social channels!
           </p>
-          <div className="contact-social-row">
+          <div className="contact-social-row" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '24px' }}>
             <div className="social-btn-wrapper">
               <span className="social-tooltip">GitHub: {contacts.github}</span>
               <a 
@@ -127,47 +90,6 @@ export default function ContactSection() {
             )}
           </div>
         </ScrollReveal>
-        <div className="col-6">
-          <ScrollReveal
-            animationClass="scroll-reveal-simple scroll-shadow-reveal"
-          >
-            <form onSubmit={handleSubmit} className="speech-bubble-card">
-              <div className="speech-bubble-header">
-                <h3 className="speech-bubble-title">What's on your mind?</h3>
-                <p className="speech-bubble-subtitle">Shoot me a direct message!</p>
-              </div>
-
-              <div className="speech-bubble-input-group">
-                <label className="speech-bubble-label" htmlFor="name">Your Name</label>
-                <input type="text" id="name" name="name" className="speech-bubble-input" placeholder="Peter Parker" required />
-              </div>
-              <div className="speech-bubble-input-group">
-                <label className="speech-bubble-label" htmlFor="email">Your Email</label>
-                <input type="email" id="email" name="email" className="speech-bubble-input" placeholder="peter@example.com" required />
-              </div>
-              <div className="speech-bubble-input-group">
-                <label className="speech-bubble-label" htmlFor="message">Your Message</label>
-                <textarea id="message" name="message" className="speech-bubble-input" rows={4} placeholder="Write your message here..." required></textarea>
-              </div>
-              <div className="submit-btn-container">
-                <button 
-                  type="submit" 
-                  className="speech-bubble-btn"
-                  disabled={status === "loading"}
-                >
-                  <span className="btn-text">{status === "loading" ? "SENDING..." : "SAY IT!"}</span>
-                </button>
-              </div>
-              {result && (
-                <div className={`chip text-center w-full ${
-                  status === "success" ? "new" : status === "error" ? "urgent" : "info"
-                }`} style={{ display: "block", margin: "16px 0 0 0" }}>
-                  {result}
-                </div>
-              )}
-            </form>
-          </ScrollReveal>
-        </div>
       </div>
     </ScrollReveal>
   );
