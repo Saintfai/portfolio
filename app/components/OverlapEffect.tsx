@@ -26,15 +26,17 @@ export default function OverlapEffect({
       // When the overlap section starts entering the viewport from the bottom
       if (overlapRect.top <= windowHeight) {
         if (!isFixed.current) {
-          // Freeze main content by fixing it to the bottom
-          spacerRef.current.style.height = `${mainRef.current.offsetHeight}px`;
+          // Freeze main content exactly where it is visually!
+          const mainRect = mainRef.current.getBoundingClientRect();
+          
+          spacerRef.current.style.height = `${mainRect.height}px`;
           spacerRef.current.style.display = "block";
           
           mainRef.current.style.position = "fixed";
-          mainRef.current.style.bottom = "0";
-          mainRef.current.style.left = "0";
-          mainRef.current.style.right = "0";
-          mainRef.current.style.width = "100%";
+          mainRef.current.style.top = `${mainRect.top}px`;
+          mainRef.current.style.left = `${mainRect.left}px`;
+          mainRef.current.style.width = `${mainRect.width}px`;
+          mainRef.current.style.bottom = "";
           mainRef.current.style.transform = "none";
           
           isFixed.current = true;
@@ -43,9 +45,8 @@ export default function OverlapEffect({
         if (isFixed.current) {
           // Unfreeze main content
           mainRef.current.style.position = "relative";
-          mainRef.current.style.bottom = "";
+          mainRef.current.style.top = "";
           mainRef.current.style.left = "";
-          mainRef.current.style.right = "";
           mainRef.current.style.width = "";
           
           spacerRef.current.style.display = "none";
@@ -61,28 +62,42 @@ export default function OverlapEffect({
       animationFrameId = requestAnimationFrame(onScroll);
     };
 
+    const handleResize = () => {
+      // If window resizes, we must reset the fixed state to recalculate properly
+      if (isFixed.current && mainRef.current && spacerRef.current) {
+        mainRef.current.style.position = "relative";
+        mainRef.current.style.top = "";
+        mainRef.current.style.left = "";
+        mainRef.current.style.width = "";
+        spacerRef.current.style.display = "none";
+        isFixed.current = false;
+      }
+      handleScroll();
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     
     // Initial call
     handleScroll();
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", handleResize);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <>
-      <div ref={spacerRef} style={{ display: "none", pointerEvents: "none" }} />
+      <div ref={spacerRef} style={{ display: "none", pointerEvents: "none", overflowAnchor: "none" }} />
       <div 
         ref={mainRef} 
         className="page-wrapper halftone-bg"
         style={{ 
           position: "relative", 
-          zIndex: 0
+          zIndex: 0,
+          overflowAnchor: "none"
         }}
       >
         {mainContent}
