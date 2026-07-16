@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useEffect, useState } from "react";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
 
