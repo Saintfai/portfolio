@@ -18,7 +18,7 @@ export default function OverlapEffect({
     let animationFrameId: number;
     
     const onScroll = () => {
-      if (!mainRef.current || !overlapRef.current) return;
+      if (!mainRef.current || !spacerRef.current || !overlapRef.current) return;
       
       const overlapRect = overlapRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
