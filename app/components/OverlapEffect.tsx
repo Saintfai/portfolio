@@ -10,7 +10,9 @@ export default function OverlapEffect({
   overlapContent: React.ReactNode; 
 }) {
   const mainRef = useRef<HTMLDivElement>(null);
+  const spacerRef = useRef<HTMLDivElement>(null);
   const overlapRef = useRef<HTMLDivElement>(null);
+  const isFixed = useRef(false);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -22,19 +24,34 @@ export default function OverlapEffect({
       const windowHeight = window.innerHeight;
       
       // When the overlap section starts entering the viewport from the bottom
-      if (overlapRect.top < windowHeight) {
-        // Calculate how much it has entered
-        const overlapAmount = windowHeight - overlapRect.top;
-        
-        // Prevent translating more than the height of the overlap section
-        const maxOverlap = overlapRect.height;
-        const translateY = Math.min(overlapAmount, maxOverlap);
-        
-        // Translate the main content down by the exact amount the page has scrolled past it,
-        // effectively "freezing" it in place while the overlap content slides over it.
-        mainRef.current.style.transform = `translateY(${translateY}px)`;
+      if (overlapRect.top <= windowHeight) {
+        if (!isFixed.current) {
+          // Freeze main content by fixing it to the bottom
+          spacerRef.current.style.height = `${mainRef.current.offsetHeight}px`;
+          spacerRef.current.style.display = "block";
+          
+          mainRef.current.style.position = "fixed";
+          mainRef.current.style.bottom = "0";
+          mainRef.current.style.left = "0";
+          mainRef.current.style.right = "0";
+          mainRef.current.style.width = "100%";
+          mainRef.current.style.transform = "none";
+          
+          isFixed.current = true;
+        }
       } else {
-        mainRef.current.style.transform = `translateY(0px)`;
+        if (isFixed.current) {
+          // Unfreeze main content
+          mainRef.current.style.position = "relative";
+          mainRef.current.style.bottom = "";
+          mainRef.current.style.left = "";
+          mainRef.current.style.right = "";
+          mainRef.current.style.width = "";
+          
+          spacerRef.current.style.display = "none";
+          
+          isFixed.current = false;
+        }
       }
     };
 
@@ -59,13 +76,13 @@ export default function OverlapEffect({
 
   return (
     <>
+      <div ref={spacerRef} style={{ display: "none", pointerEvents: "none" }} />
       <div 
         ref={mainRef} 
         className="page-wrapper halftone-bg"
         style={{ 
           position: "relative", 
-          zIndex: 0, 
-          willChange: "transform" 
+          zIndex: 0
         }}
       >
         {mainContent}
