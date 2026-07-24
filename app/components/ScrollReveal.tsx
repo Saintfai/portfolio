@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState, HTMLAttributes } from "react";
+import { ReactNode, useState, HTMLAttributes } from "react";
+import { motion } from "framer-motion";
 
 interface ScrollRevealProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;
@@ -19,44 +20,25 @@ export default function ScrollReveal({
   as = "div",
   ...props
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (delay > 0) {
-            setTimeout(() => setIsVisible(true), delay);
-          } else {
-            setIsVisible(true);
-          }
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [threshold, delay]);
-
-  const Tag = as;
+  const MotionTag = motion(as as any) as any;
 
   return (
-    <Tag
-      ref={ref as any}
+    <MotionTag
       className={`${animationClass} ${isVisible ? "visible" : ""} ${className}`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: threshold }}
+      transition={{ 
+        type: "spring",
+        stiffness: 70, 
+        damping: 20, 
+        delay: delay / 1000 
+      }}
+      onViewportEnter={() => setIsVisible(true)}
       {...props}
     >
       {children}
-    </Tag>
+    </MotionTag>
   );
 }

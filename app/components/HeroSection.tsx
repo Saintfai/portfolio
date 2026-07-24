@@ -1,48 +1,74 @@
+"use client";
+
 import { portfolioData } from "../data/portfolio";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   const { profile } = portfolioData;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 70, damping: 20 } 
+    }
+  };
+
   return (
-    <section className="hero-section shear-bottom fade-in-up speed-lines speed-lines-hero">
+    <motion.section 
+      className="hero-section shear-bottom speed-lines speed-lines-hero"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {/* Decorative Background Bubbles */}
       <div className="bg-decorations">
-        <div className="decor-caption" style={{ top: "8%", left: "3%" }}>
+        <motion.div variants={itemVariants} className="decor-caption" style={{ top: "8%", left: "3%" }}>
           MEANWHILE...
-        </div>
-        <div className="decor-burst-wrap float-slow" style={{ top: "15%", right: "3%" }}>
+        </motion.div>
+        <motion.div variants={itemVariants} className="decor-burst-wrap float-slow" style={{ top: "15%", right: "3%" }}>
           <div className="decor-burst decor-burst-red">BANG!</div>
-        </div>
-        <div className="decor-bubble decor-thought float-slower" style={{ bottom: "12%", left: "2%" }}>
+        </motion.div>
+        <motion.div variants={itemVariants} className="decor-bubble decor-thought float-slower" style={{ bottom: "12%", left: "2%" }}>
           WHO IS THIS DEV?!
-        </div>
-        <div className="decor-symbol float-slow" style={{ bottom: "30%", left: "3%" }}>
+        </motion.div>
+        <motion.div variants={itemVariants} className="decor-symbol float-slow" style={{ bottom: "30%", left: "3%" }}>
           !?
-        </div>
+        </motion.div>
       </div>
       <div className="grid-container">
         <div className="col-8">
-          <h1 className="hero-title rotate-text">
+          <motion.h1 variants={itemVariants} className="hero-title rotate-text">
             <span className="text-stroke">{profile.heroName}</span>
             <br />
             <span style={{ color: "var(--color-spiderman-red)" }}>{profile.role}</span>
-          </h1>
-          <p className="hero-subtitle">
+          </motion.h1>
+          <motion.p variants={itemVariants} className="hero-subtitle">
             {profile.description}
-          </p>
-          <div className="hero-actions">
+          </motion.p>
+          <motion.div variants={itemVariants} className="hero-actions">
             <a href="#contact" className="btn btn-primary rotate-text-alt">Hire Me Now!</a>
-          </div>
+          </motion.div>
         </div>
         <div className="col-4">
-          <div className="hard-shadow hard-shadow-primary rotate-text-alt hero-illustration-container">
+          <motion.div variants={itemVariants} className="hard-shadow hard-shadow-primary rotate-text-alt hero-illustration-container">
             <div className="heavy-border hero-illustration-box">
               <div className="hero-illustration-text">
                 [ Hero Illustration ]
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
