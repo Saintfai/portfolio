@@ -3,9 +3,27 @@
 import { useRef, useEffect, useState } from "react";
 import { portfolioData } from "../data/portfolio";
 import ScrollReveal from "./ScrollReveal";
+import { motion } from "framer-motion";
 
 export default function ContactSection() {
   const { contacts } = portfolioData;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 70, damping: 20 } 
+    }
+  };
 
   return (
     <ScrollReveal 
@@ -34,14 +52,20 @@ export default function ContactSection() {
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '4rem 1rem', textAlign: 'center', position: 'relative', zIndex: 10 }}>
-        <ScrollReveal animationClass="scroll-reveal-simple" style={{ maxWidth: '600px' }}>
-          <h2 className="rotate-text contact-title" style={{ margin: '0 auto 1.5rem auto' }}>
+        <motion.div 
+          style={{ maxWidth: '600px' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
+          <motion.h2 variants={itemVariants} className="rotate-text contact-title" style={{ margin: '0 auto 1.5rem auto' }}>
             Send a<br/><span className="contact-highlight">Signal</span>
-          </h2>
-          <p className="contact-description" style={{ margin: '0 auto 2.5rem auto' }}>
+          </motion.h2>
+          <motion.p variants={itemVariants} className="contact-description" style={{ margin: '0 auto 2.5rem auto' }}>
             Need a hero for your next project? Connect with me on my social channels!
-          </p>
-          <div className="contact-social-row" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '24px' }}>
+          </motion.p>
+          <motion.div variants={itemVariants} className="contact-social-row" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '24px' }}>
             <div className="social-btn-wrapper">
               <span className="social-tooltip">GitHub: {contacts.github}</span>
               <a 
@@ -91,8 +115,8 @@ export default function ContactSection() {
                 <div className="social-btn-shadow shadow-black"></div>
               </div>
             )}
-          </div>
-        </ScrollReveal>
+          </motion.div>
+        </motion.div>
       </div>
     </ScrollReveal>
   );
