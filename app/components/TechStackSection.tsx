@@ -117,6 +117,7 @@ const fallbackIcon = (
 );
 
 export default function TechStackSection() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { techStack = [], techStackRow2 = [] } = portfolioData as any;
 
   // Combine all tech stack items into a single array

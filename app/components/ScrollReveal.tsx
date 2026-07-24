@@ -21,6 +21,7 @@ export default function ScrollReveal({
   ...props
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const MotionTag = motion(as as any) as any;
 
   return (

@@ -44,6 +44,7 @@ export default function TypingDescription({
       }
     } else if (phase === "pausing") {
       // ink burst effect before erasing
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInkBurst(true);
       timeoutRef.current = setTimeout(() => {
         setInkBurst(false);
